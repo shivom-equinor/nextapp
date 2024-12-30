@@ -1,0 +1,28 @@
+[
+  {
+    "viewGroupName": "Default",
+    "viewNames": ["All solutions"]
+  },
+  {
+    "viewGroupName": "Delivery format",
+    "viewNames": [
+      "Best practice",
+      "Competence",
+      "Data",
+      "Hardware",
+      "Method",
+      "Report",
+      "Software",
+      "Workflow",
+      "Other"
+    ]
+  },
+  {
+    "viewGroupName": "Technology maturation stage",
+    "viewNames": [
+      "In development (up to TRL3)",
+      "Qualified technologies (TRL4 – TRL6)",
+      "Proven technologies (TRL7)"
+    ]
+  }
+]

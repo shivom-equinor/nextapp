@@ -1,0 +1,125 @@
+.mce-content-body {
+  font-family: "Equinor", sans-serif !important;
+  color: #243746 !important;
+}
+
+.tox .tox-tbtn {
+  height: 26px !important;
+}
+
+.tox .tox-dialog {
+  border: none !important;
+  border-radius: 0px !important;
+}
+
+.tox .tox-dialog-wrap__backdrop {
+  background-color: unset;
+  background: #243746 0% 0% no-repeat padding-box !important;
+  opacity: 0.8;
+  backdrop-filter: blur(3px);
+}
+
+.tox .tox-dialog__header {
+  padding-left: 32px !important;
+}
+
+.tox .tox-dialog__title {
+  color: #243746;
+  padding-top: 16px;
+  font-family: "Equinor", sans-serif !important;
+  font-size: 26px !important;
+}
+
+.tox .tox-dialog__body-content {
+  padding: 32px !important;
+  padding-bottom: 16px !important;
+}
+
+.tox .tox-label {
+  font-family: "Equinor", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #243746 !important;
+  padding-bottom: 8px !important;
+}
+
+.tox .tox-dialog__footer {
+  padding: 32px !important;
+}
+
+.tox .tox-textfield {
+  height: 46px;
+  border-radius: 0px !important;
+}
+
+.tox .tox-button {
+  font-family: "Equinor", sans-serif;
+  background-color: #007079 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 8px 24px !important;
+  text-transform: uppercase !important;
+}
+
+.tox .tox-button:hover {
+  background-color: #00545b !important;
+  border-color: #00545b !important;
+}
+
+.tox .tox-button:focus {
+  background-color: #00545b !important;
+  border-color: #00545b !important;
+}
+
+.tox .tox-button.tox-button--secondary {
+  background-color: transparent !important;
+  border-color: #007079 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  margin-right: 16px !important;
+}
+
+.tox .tox-button.tox-button--secondary:hover {
+  background-color: #f2f8f8 !important;
+  border-color: #00545b !important;
+}
+
+.tox .tox-button.tox-button--secondary:focus {
+  background-color: #f2f8f8 !important;
+  border-color: #00545b !important;
+}
+
+.tox .tox-button.tox-button--icon.tox-button--naked {
+  background-color: transparent !important;
+  padding: 0px !important;
+  border: none;
+}
+
+.tox .tox-button.tox-button--icon.tox-button--naked[title="Source"] {
+  padding: 8px 12px !important;
+}
+
+.tox .tox-button.tox-button--icon.tox-button--naked .tox-icon {
+  background-color: #007079;
+  border-radius: 15px;
+}
+
+.tox .tox-button.tox-button--icon.tox-button--naked .tox-icon svg {
+  fill: white;
+}
+
+.tox .tox-form__group {
+  margin-bottom: 16px !important;
+}
+
+.tox
+  .tox-button.tox-button--icon.tox-button--naked.tox-browse-url
+  .tox-icon
+  svg {
+  fill: #007079;
+}
+
+.tox:not([dir=rtl]) .tox-toolbar__group:not(:last-of-type) {
+  border-right: 1px solid #ccc !important;
+}

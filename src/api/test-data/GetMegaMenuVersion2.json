@@ -1,0 +1,231 @@
+  [
+    {
+      "id": "1",
+      "title": "TDI Portal",
+      "description": "TDI portal - Dsc",
+      "url": null,
+      "subMenus": null
+    },
+    {
+      "id": "2",
+      "title": "Business need",
+      "description": "Business need - Dsc",
+      "url": null,
+      "subMenus": [
+        {
+          "id": "9",
+          "title": "Browse by owner organisation",
+          "description": "Browse by owner organisation - Dsc",
+          "url": null,
+          "subMenus": [
+            {
+              "id": "10",
+              "title": "Owner organisation - TPD R&T",
+              "description": "Owner organisation - TPD R&T - Dsc",
+              "url": null,
+              "subMenus": null
+            }
+          ]
+        },
+        {
+          "id": "11",
+          "title": "Browse ongoing business needs",
+          "description": "Browse ongoing business needs - Dsc",
+          "url": null,
+          "subMenus": null
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Technology",
+      "description": "Technology - Dsc",
+      "url": null,
+      "subMenus": [
+        {
+          "id": "12",
+          "title": "How to explore the TDI technology portfolio",
+          "description": "How to explore the TDI technology portfolio - Dsc",
+          "url": null,
+          "subMenus": [
+            {
+              "id": "21",
+              "title": "Technology Portfolio by Coordinator",
+              "description": "Technology Portfolio by Coordinator - Dsc",
+              "url": null,
+              "subMenus": null
+            },
+            {
+              "id": "22",
+              "title": "Technology Portfolio by Executor",
+              "description": "Technology Portfolio by Executor - Dsc",
+              "url": null,
+              "subMenus": null
+            }
+          ]
+        },
+        {
+          "id": "13",
+          "title": "Browse by business challenge",
+          "description": "Browse by business challenge - Dsc",
+          "url": null,
+          "subMenus": [
+            {
+              "id": "23",
+              "title": "Browse by business challenge - Successful exploration",
+              "description": "Browse by business challenge - Successful exploration - Dsc",
+              "url": null,
+              "subMenus": null
+            },
+            {
+              "id": "24",
+              "title": "Browse by business challenge - Floating solution",
+              "description": "Browse by business challenge - Floating solution - Dsc",
+              "url": null,
+              "subMenus": null
+            }
+          ]
+        },
+        {
+          "id": "14",
+          "title": "Browse by Technology council (TC)",
+          "description": "Browse by Technology council (TC) - Dsc",
+          "url": null,
+          "subMenus": null
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Professional ladder",
+      "description": "Professional ladder - Dsc",
+      "url": null,
+      "subMenus": null
+    },
+    {
+      "id": "5",
+      "title": "Training and help",
+      "description": "Training and help - Dsc",
+      "url": null,
+      "subMenus": [
+        {
+          "id": "15",
+          "title": "Training material",
+          "description": "Training material - Dsc",
+          "url": null,
+          "subMenus": [
+            {
+              "id": "25",
+              "title": "Process support tool",
+              "description": "Process support tool - Dsc",
+              "url": null,
+              "subMenus": null
+            },
+            {
+              "id": "26",
+              "title": "Milestones definition",
+              "description": "Milestones definition - Dsc",
+              "url": null,
+              "subMenus": null
+            }
+          ]
+        },
+        {
+          "id": "16",
+          "title": "Q & A",
+          "description": "Q & A - Dsc",
+          "url": null,
+          "subMenus": [
+            {
+              "id": "27",
+              "title": "FAQ",
+              "description": "FAQ - Dsc",
+              "url": null,
+              "subMenus": null
+            },
+            {
+              "id": "28",
+              "title": "Questions from Christmas quiz",
+              "description": "Questions from Christmas quiz - Dsc",
+              "url": null,
+              "subMenus": null
+            }
+          ]
+        },
+        {
+          "id": "17",
+          "title": "Training courses (Technology academy)",
+          "description": "Training courses (Technology academy) - Dsc",
+          "url": null,
+          "subMenus": null
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Management reports",
+      "description": "Management reports - Dsc",
+      "url": null,
+      "subMenus": [
+        {
+          "id": "18",
+          "title": "About management reports",
+          "description": "About management reports - Dsc",
+          "url": null,
+          "subMenus": [
+            {
+              "id": "29",
+              "title": "Management reports - TPD R&T",
+              "description": "Management reports - TPD R&T - Dsc",
+              "url": null,
+              "subMenus": [
+                {
+                  "id": "31",
+                  "title": "Test",
+                  "description": "Test - Dsc",
+                  "url": null,
+                  "subMenus": null
+                }
+              ]
+            },
+            {
+              "id": "30",
+              "title": "Management reports - DPN",
+              "description": "Management reports - DPN - Dsc",
+              "url": null,
+              "subMenus": null
+            }
+          ]
+        },
+        {
+          "id": "19",
+          "title": "About self-service report ordering",
+          "description": "About self-service report ordering - Dsc",
+          "url": null,
+          "subMenus": null
+        },
+        {
+          "id": "20",
+          "title": "Order additional reports through Services@Statoil",
+          "description": "Order additional reports through Services@Statoil - Dsc",
+          "url": null,
+          "subMenus": null
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Statistics and key figures",
+      "description": "Statistics and key figures - Dsc",
+      "url": null,
+      "subMenus": null
+    },
+    {
+      "id": "8",
+      "title": "TDI",
+      "description": "TDI - Dsc",
+      "url": null,
+      "subMenus": null
+    }
+  ]
+

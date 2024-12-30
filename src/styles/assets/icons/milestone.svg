@@ -1,0 +1,24 @@
+<svg className="milestone-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g className="future" fill="#fff" stroke="#007079" stroke-width="3" stroke-dasharray="6">
+    <circle cx="12" cy="12" r="12" stroke="none" />
+    <circle cx="12" cy="12" r="10.5" fill="none" />
+  </g>
+
+  <g className="current" fill="#243746" stroke="#243746" stroke-width="2">
+    <circle cx="12" cy="12" r="12" stroke="none" />
+    <circle cx="12" cy="12" r="11" fill="#243746" />
+  </g>
+
+  <g className="stopped" fill="#929BA3" stroke="#929BA3" stroke-width="2">
+    <circle cx="12" cy="12" r="12" stroke="none" />
+    <circle cx="12" cy="12" r="11" fill="#929BA3" />
+  </g>
+
+  <g className="done" transform="translate(-1274 -496)">
+    <g transform="translate(1274 496)" fill="#fff" stroke="#007079" stroke-width="1">
+      <circle cx="12" cy="12" r="12" stroke="none" />
+      <circle cx="12" cy="12" r="11.5" fill="none" />
+    </g>
+    <path d="M-14950.926,741.4l3.682,3.681,6.686-7.812" transform="translate(16231.426 -232.769)" fill="none" stroke="#007079" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+  </g>
+</svg>

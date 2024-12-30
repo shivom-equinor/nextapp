@@ -1,0 +1,161 @@
+{
+  "browseByRoles": [
+    {
+      "id": 0,
+      "text": "All my roles"
+    },
+    {
+      "id": 1,
+      "text": "Solution owner"
+    },
+    {
+      "id": 2,
+      "text": "Task manager"
+    },
+    {
+      "id": 3,
+      "text": "Team member"
+    },
+    {
+      "id": 4,
+      "text": "Customer responsible"
+    },
+    {
+      "id": 5,
+      "text": "Customer technical contact"
+    }
+  ],
+  "solutionListColumns": [
+    {
+      "displayName": "Solution",
+      "value": "technologyName"
+    },
+    {
+      "displayName": "ID",
+      "value": "techId"
+    },
+    {
+      "displayName": "Keep secret",
+      "value": "communication"
+    },
+    {
+      "displayName": "Status",
+      "value": "status"
+    },
+    {
+      "displayName": "Phase",
+      "value": "phase"
+    },
+    {
+      "displayName": "Project category",
+      "value": "projectCategories"
+    },
+    {
+      "displayName": "TRL",
+      "value": "trl"
+    },
+    {
+      "displayName": "Next SDG",
+      "value": "nextTDGDate"
+    }
+  ],
+  "solutionListFilters": [
+    {
+      "displayName": "Solution owner organisation",
+      "name": "solutionOwnerOrganisation",
+      "type": "Input",
+      "values": null
+    },
+    {
+      "displayName": "Status",
+      "name": "status",
+      "type": "CheckBox",
+      "values": [
+        "Available",
+        "Cancelled",
+        "Draft",
+        "Obsolete",
+        "Ongoing",
+        "Proposed",
+        "RD",
+        "Rejected",
+        "Replaced",
+        "Stopped"
+      ]
+    },
+    {
+      "displayName": "Main discipline",
+      "name": "mainDiscipline",
+      "type": "CheckBox",
+      "values": [
+        null,
+        "D&W - Cementing",
+        "D&W - Coil Tubing",
+        "D&W - Data Acquisition & Testing Exploration Wells",
+        "D&W - Deep water & High Pressure High Temperature",
+        "D&W - Drilling facilities",
+        "D&W - Drilling Fluids and Total Fluid Management",
+        "D&W - Governing System, Work Processes and Integrated Operations_updated",
+        "D&W - Subsea well intervention DW test",
+        "D&W - Subsea wellhead and christmastre",
+        "D&W - Subsea wellhead and christmastre new",
+        "D&W - Well Construction",
+        "D&W - Well control equipment testA",
+        "D&W - Well Tubular Technology",
+        "D&W - Wellbore stability",
+        "EXP - Depth Conversion",
+        "EXP - Petroleum Systems Analysis",
+        "EXP - Prospect evaluation",
+        "HSE - Environmental assessment and monitoring",
+        "No content"
+      ]
+    },
+    {
+      "displayName": "SDG",
+      "name": "tdg",
+      "type": "CheckBox",
+      "values": ["1", "2", "3", "4"]
+    },
+    {
+      "displayName": "TRL",
+      "name": "trl",
+      "type": "CheckBox",
+      "values": ["0", "1", "2", "3", "4", "5", "6", "7"]
+    },
+    {
+      "displayName": "Portfolio",
+      "name": "technologyCouncil",
+      "type": "CheckBox",
+      "values": [
+        "CCS and low carbon",
+        "Emerging technologies",
+        "Equinor ventures",
+        "Facility",
+        "Functions and supply chain",
+        "Marketing and supply",
+        "Offshore wind",
+        "Operations"
+      ]
+    },
+    {
+      "displayName": "Project category",
+      "name": "projectCategories",
+      "type": "CheckBox",
+      "values": [
+        "Brownfield",
+        "Cessation",
+        "CO2 Capture",
+        "CO2 Capture and Storage",
+        "CO2 Storage",
+        "Drilling Upgrade",
+        "eFuel",
+        "FPSO",
+        "HSE",
+        "Hydrogen",
+        "Nuclear",
+        "Offshore Wind",
+        "Onshore"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.9" height="14" viewBox="0 0 24.9 14">
+    <path class="changeable-fill" d="M446.1,13H431.3a1,1,0,0,0,0,2h14.8a.945.945,0,0,0,1-1A1,1,0,0,0,446.1,13Z" transform="translate(-426.3 -7)"/>
+    <path class="changeable-fill" d="M450.2,7H427.3a.945.945,0,0,0-1,1,.945.945,0,0,0,1,1h22.9a.945.945,0,0,0,1-1A1.075,1.075,0,0,0,450.2,7Z" transform="translate(-426.3 -7)"/>
+    <path class="changeable-fill" d="M439.7,19h-2.1a1,1,0,0,0,0,2h2.1a.945.945,0,0,0,1-1A1,1,0,0,0,439.7,19Z" transform="translate(-426.3 -7)"/>
+</svg>

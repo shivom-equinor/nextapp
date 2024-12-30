@@ -1,0 +1,15 @@
+{
+  "moduleMainHeaderDetails": {
+    "moduleDescription": "<p>Managing the SDG level means reducing it: you rewind the project activities to the previous phase, e.g from ‘Implement’ (SDG3) to ‘Develop’ (SDG2), or from ‘Develop’ (SDG2) to ‘Manage’ (SDG1).</p><p>In order to do so, the TRL approvals may need to be reduced first.</p><p>A TRL7 (proven technology) has to be reduced before reducing the SDG3 to SDG2. A SDG reduction is not possible until the TRL7 reduction is in place.</p><p>A TRL4 (qualified technology) has to be reduced before reducing the SDG2 to SDG1. A SDG reduction is not possible until the TRL4 reduction is in place.</p><p>Any recommendations to the SDG from IP, procurement, .. will also be soft deleted. This means that they disappear from the approval form, but are available from the backend and can be reinstated if requested so by the task manager/ solution owner.</P>",
+    "moduleName": "Manage SDG level"
+  },
+  "findSolution": {
+    "label": "Find the solution",
+    "helpText": "Search by case ID or solution ID ",
+    "value": null,
+    "metaData": null,
+    "visible": false,
+    "hyperLink": null,
+    "hyperLinkText": null
+  }
+}

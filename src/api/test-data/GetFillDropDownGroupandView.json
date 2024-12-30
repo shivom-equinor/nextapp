@@ -1,0 +1,38 @@
+[
+  {
+    "viewGroupName": "Delivery Type",
+    "viewNames": [
+      "Best Practice",
+      "Software"
+    ]
+  },
+  {
+    "viewGroupName": "My Role",
+    "viewNames": [
+      "Coordinator",
+      "Executor",
+      "Task manager",
+      "Solution owner"
+    ]
+  },
+  {
+    "viewGroupName": "Process",
+    "viewNames": [
+      "Drilling and well (grouped by competence area)",
+      "Exploration (grouped by competence area)"
+    ]
+  },
+  {
+    "viewGroupName": "Default",
+    "viewNames": [
+      "Default"
+    ]
+  },
+  {
+    "viewGroupName": "Status",
+    "viewNames": [
+      "Ongoing Technologies",
+      "Technologies by business challenge"
+    ]
+  }
+]

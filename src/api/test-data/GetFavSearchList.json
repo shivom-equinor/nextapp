@@ -1,0 +1,11 @@
+{
+  "favSearch": {
+    "label": "My favourite searches",
+    "helpText": "Max limit 10",
+    "visible": true,
+    "hyperLink": "",
+    "hyperLinkText": "",
+    "value": "[{\"id\":\"UUID1\",\"name\":\"Fav1\",\"selectedGroup\":\"Delivery format\",\"selectedView\":\"Best practice\",\"selectedMyRole\":\"Solution owner\",\"search\":\"T20-0001\",\"selectedFilters\":{\"myFavoriteTechnology\":[\"Solutions I follow\"],\"status\":[\"Available\",\"Draft\"]}},{\"id\":\"UUID2\",\"name\":\"Fav2\",\"selectedGroup\":\"Default\",\"selectedView\":\"All solutions\",\"selectedMyRole\":\"All my roles\",\"search\":null,\"selectedFilters\":null}]",
+    "metaData": null
+  }
+}

@@ -1,0 +1,21 @@
+/* This solve sticky headings/column over issue */
+#headerSticky,
+.form-footer {
+  z-index: 1200 !important;
+}
+#headerSticky {
+  height: 42px;
+}
+
+/* Customer org tooltip custom styles */
+.p-tooltip.p-component.p-tooltip-bottom {
+  z-index: 1150 !important;
+}
+.p-tooltip.p-component > .p-tooltip-text {
+  background-color: #243746;
+}
+
+/* This solve date-picker over issue on sticky headings/column */
+.p-datepicker {
+  z-index: 998 !important;
+}

@@ -1,0 +1,389 @@
+{
+  "solutionListColumns": [
+    {
+      "displayName": "Solution",
+      "value": "technologyName"
+    },
+    {
+      "displayName": "ID",
+      "value": "techId"
+    },
+    {
+      "displayName": "Keep secret",
+      "value": "communication"
+    },
+    {
+      "displayName": "Status",
+      "value": "status"
+    },
+    {
+      "displayName": "Phase",
+      "value": "phase"
+    },
+    {
+      "displayName": "Project category",
+      "value": "projectCategories"
+    },
+    {
+      "displayName": "TRL",
+      "value": "trl"
+    },
+    {
+      "displayName": "Next SDG",
+      "value": "nextTDGDate"
+    }
+  ],
+  "solutionListFilters": [
+    {
+      "name": "solutionOwnerOrganisation",
+      "displayName": "Technology product manager organisation",
+      "type": "Input",
+      "values": null
+    },
+    {
+      "name": "status",
+      "displayName": "Status",
+      "type": "Checkbox",
+      "values": [
+        "Available",
+        "Draft",
+        "Obsolete",
+        "Ongoing",
+        "Proposed",
+        "Rejected",
+        "Replaced",
+        "Stopped"
+      ]
+    },
+    {
+      "name": "mainDiscipline",
+      "displayName": "Main discipline",
+      "type": "Checkbox",
+      "values": [
+        "  MARS  24333",
+        "ASDghhh",
+        "AZAZ jkjkjkjk",
+        "Bug-210428",
+        "D&W -  Well integ rity wells  operation Drilling and Well ",
+        "D&W - Artificial lift",
+        "D&W - Cessation, plug & abandonment",
+        "D&W - Digital applications and data management",
+        "D&W - Directional drilling and well positioning",
+        "D&W - Drilling and well fluids",
+        "D&W - Drilling practices and tools ",
+        "D&W - Estimation (time, cost, risk, schedule)_demo",
+        "D&W - Fluids",
+        "D&W - Heavy intervention",
+        "D&W - Managed pressure drilling",
+        "D&W - Rock mechanics",
+        "D&W - Subsea wellhead and christmastree systems",
+        "D&W - Surface wellhead and christmastree systems",
+        "D&W - Well control equipment",
+        "D&W - Well integrity well",
+        "D&W - Well tubular technology",
+        "D&W - Wells",
+        "D&W - Wireline intervention",
+        "D&W -Well inte grity well",
+        "D&W -Well integrity - drilling",
+        "IT - Cloud  binfrastructure",
+        "IT - Cloud infrastructure",
+        "IT - Data engineering",
+        "IT - Information management and content",
+        "IT – Plant IT architecture and Integration",
+        "IT – SAP and ERP Architecture",
+        "IT - Software engineering - Architecture and platform",
+        "IT - Software Engineering - Open source software",
+        "IT - Software Engineering - Security in software development",
+        "IT - Software Engineering Practices",
+        "IT - Subsurface data",
+        "IT- Data management",
+        "LLLPPP",
+        "merge s&S SUB - Clastic Reservoir Systems",
+        "NEW one 1",
+        "O&M - Automation - Field instrumentation",
+        "O&M - Automation - Information systems and security",
+        "O&M - Automation technology",
+        "O&M - Cranes and lifting operations",
+        "O&M - Electrical safety and operation",
+        "O&M - Telecommunincation",
+        "PD - Concept development",
+        "PD - Construction management",
+        "PD - Corrosion and materials selection",
+        "PD - Cost estimating",
+        "PD - Dynamic risers",
+        "PD - Electrical technology",
+        "PD - Fiscal metering systems and Multiphase meetering and allocation",
+        "PD - Flow technology",
+        "PD - Gas production systems",
+        "PD - Geotechnics",
+        "PD - Inspection technology",
+        "PD - Marine concepts and hydrodynamics",
+        "PD - Marine operations",
+        "PD - Metallic materials and welding",
+        "PD - Multiphase fluid control",
+        "PD - Oil production system design",
+        "PD - Pipeline commissioning",
+        "PD - Pipeline construction",
+        "PD - Pipeline design",
+        "PD - Pipeline operations",
+        "PD - Piping & layout",
+        "PD - Polymer materials and surface protection",
+        "PD - Power transmission and system integration of renewables",
+        "PD - Process safety",
+        "PD - Project comissioning and hook up",
+        "PD - Project control",
+        "PD - Project cost control & analysis template",
+        "PD - Project engineering management",
+        "PD - Project planning and analysis",
+        "PD - Rotating equipment",
+        "PD - Ship technology",
+        "PD - SSU management",
+        "PD - Static mechanical equipment and valves",
+        "PD - Structural analysis",
+        "PD - Subsea control systems",
+        "PD - Subsea electrical technology",
+        "PD - Subsea intervention",
+        "PD - Subsea processing",
+        "PD - Subsea systems and concepts",
+        "PD - Transport analysis & gas quality",
+        "PD - W ight and quantity management",
+        "PD - Water treatment system",
+        "pluto 123 ",
+        "SC - Contract establishment",
+        "SDFVF ",
+        "SSU - Climate and Environmental technology",
+        "SSU - Emergency preparedness analysis and Equipment",
+        "SSU - Environmental risk analysis & Oil spill preparedness",
+        "SSU - Industrial hygiene",
+        "SSU - Medical services",
+        "SSU - Occupational health",
+        "SSU - Organisational safety and Human factors",
+        "SSU - Performance management",
+        "SSU - Safety risk assessment",
+        "SSU - Technical safety",
+        "SSU - Working environment technology",
+        "SUB - Basin and play evaluation",
+        "SUB - Carbon capture, utilisation and storage",
+        "SUB - Carbonate production geology",
+        "SUB - Carbonates",
+        "SUB - Clastics",
+        "SUB - Core analysis & reservoir flow parameters",
+        "SUB - Digitalisation",
+        "SUB - Drainage strategy",
+        "SUB - Geo pressure and operations geology",
+        "SUB - Geomodelling",
+        "SUB - Geophysical analysis",
+        "SUB - History matching",
+        "SUB - Petroleum source systems ",
+        "SUB - Petrophysical methods and modelling",
+        "SUB - Petrophysical operations",
+        "SUB - Production optimisation and sand management",
+        "SUB - Prospect evaluation",
+        "SUB - Quantitative interpretation",
+        "SUB - Recovery mechanisms and PVT fluid analysis",
+        "SUB - Reservoir geology",
+        "SUB - Reservoir simulation",
+        "SUB - Seismic data quality",
+        "SUB - Seismic interpretation",
+        "SUB - Seismic Processing",
+        "SUB - Static and dynamic uncertainty",
+        "SUB - Stratigraphy and sedimentology",
+        "SUB - Structural geology",
+        "SUB - Trap and seal systems",
+        "SUB - Unconventionals",
+        "SUB - Valuation",
+        "SUB - Well and network hydraulics",
+        "SUB - Well chemistry and water management",
+        "SUB - Well planning and evaluation",
+        "SUB - Well productivity and inflow control",
+        "TD1-Test",
+        "TECH TECH",
+        "test      abc          def          abcd    xyz     tests",
+        "test88",
+        "testing tech discipine ",
+        "testritm"
+      ]
+    },
+    {
+      "name": "tdg",
+      "displayName": "SDG",
+      "type": "Checkbox",
+      "values": ["1", "2", "3", "4", "5"]
+    },
+    {
+      "name": "trl",
+      "displayName": "TRL",
+      "type": "Checkbox",
+      "values": ["0", "1", "2", "3", "4", "5", "6", "7", "TRL N/A"]
+    },
+    {
+      "name": "technologyCouncil",
+      "displayName": "Portfolio",
+      "type": "Checkbox",
+      "values": [
+        "CCS",
+        "Corporate functions",
+        "Digital foundation",
+        "Drilling & well",
+        "Early phase & project deliveries",
+        "Facility development projects",
+        "Hydrogen & low carbon solutions",
+        "IT, Business solution & fundamental",
+        "Marketing & supply",
+        "Nexus",
+        "O&M",
+        "Onshore renewables",
+        "Operations & maintenance",
+        "Outside arena model",
+        "Product lines",
+        "Subsurface",
+        "Supply chain management",
+        "Not defined",
+        "CCS and low carbon",
+        "Drilling and well",
+        "Emerging technologies",
+        "Energy and power",
+        "Enterprise",
+        "Equinor ventures",
+        "Exploration",
+        "Field development and operations",
+        "Functions and supply chain",
+        "Future business",
+        "Low carbon",
+        "Low carbon energy systems",
+        "Offshore heavy oil",
+        "Offshore wind",
+        "Oil and gas value chains",
+        "Operational excellence",
+        "Petroleum technologies",
+        "Renewable energy systems",
+        "Renewables",
+        "Shale oil and gas",
+        "Subsea and surface production systems"
+      ]
+    },
+    {
+      "name": "solutionArea",
+      "displayName": "Solution Area",
+      "type": "Checkbox",
+      "values": [
+        "Asset operations & connectivity",
+        "Asset integrity & maintenance",
+        "SSU",
+        "Production optimization & emissions",
+        "Resource and target identification and maturation",
+        "Reservoir drainage and monitoring",
+        "Well planning and management",
+        "Production optimization",
+        "Subsurface data, digital and analytics",
+        "Investment projects",
+        "Project development data and analytics",
+        "Gas & power trade and post-trade and marketing solutions",
+        "Liquids trade and post-trade",
+        "M7S data analytics (AI) and insight solutions",
+        "TAL",
+        "Future markets & renewables",
+        "F&C, COM, CAI&LEG",
+        "People & organization",
+        "Digital SSU",
+        "Enterprise data and platform",
+        "Cybersecurity",
+        "Platform & infrastructure",
+        "Digital developer",
+        "Digital excellence"
+      ]
+    },
+    {
+      "name": "prioritization",
+      "displayName": "Prioritization",
+      "type": "Checkbox",
+      "values": [
+        "P1 - Critical issues",
+        "P1 - Legal obligations",
+        "P1 - External compliance",
+        "P1 - Substantial safety and security impact",
+        "P2 - CEC decided activities",
+        "P2 - Time critical replacements",
+        "P3 - Company's strategies and ambitions"
+      ]
+    },
+    {
+      "name": "projectCategories",
+      "displayName": "Project category",
+      "type": "Checkbox",
+      "values": [
+        "Brownfield",
+        "Cessation",
+        "CO2 Capture",
+        "CO2 Capture and Storage",
+        "CO2 Storage",
+        "Drilling Upgrade",
+        "eFuel",
+        "FPSO",
+        "HSE",
+        "Hydrogen",
+        "Nuclear",
+        "Offshore Wind",
+        "Onshore",
+        "Pipeline",
+        "Platform",
+        "Platform FPSO",
+        "Power from Shore (PfS)",
+        "Renewable, any other",
+        "Solar",
+        "Subsea",
+        "Tie-in"
+      ]
+    }
+  ],
+  "browseByRoles": [
+    {
+      "id": 0,
+      "text": "All my roles"
+    },
+    {
+      "id": 1,
+      "text": "Business solution owner"
+    },
+    {
+      "id": 2,
+      "text": "Technology product manager"
+    },
+    {
+      "id": 3,
+      "text": "Delivery team lead"
+    },
+    {
+      "id": 4,
+      "text": "Product owner"
+    },
+    {
+      "id": 5,
+      "text": "Team member"
+    },
+    {
+      "id": 6,
+      "text": "Discipline expert - IPR"
+    },
+    {
+      "id": 7,
+      "text": "Professional ladder representative"
+    },
+    {
+      "id": 8,
+      "text": "Discipline expert - Export control and sanctions"
+    },
+    {
+      "id": 9,
+      "text": "Customer representative"
+    },
+    {
+      "id": 10,
+      "text": "Customer technical contact"
+    },
+    {
+      "id": 11,
+      "text": "Stakeholders"
+    }
+  ]
+}

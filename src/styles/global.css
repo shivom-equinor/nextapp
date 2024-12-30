@@ -1,0 +1,284 @@
+@import "typography.css";
+
+/*
+ * Global styles
+ * Component specific styles should be scoped to each component
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Equinor", sans-serif;
+  color: #243746;
+  font-size: 100%;
+  font-weight: 400;
+  overflow: visible;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+div,
+span,
+a {
+  word-break: break-all;
+}
+
+@supports (word-break: break-word) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  div,
+  span,
+  a {
+    word-break: break-word;
+  }
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.875rem;
+  margin-bottom: 1rem;
+}
+
+/* Global Style to all links */
+a {
+  color: #007079;
+  font-weight: 600;
+}
+
+a:hover,
+a:focus {
+  color: #00545b;
+}
+
+a:active {
+  color: #243746;
+}
+
+/* Global Style to all images */
+img {
+  max-width: 100%;
+}
+
+/* Hide the rest of the line with "..." at the end */
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* To hide stuff while keeping it accessible for screen readers */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/*
+ * Bootstrap overrides
+ */
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 1260px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1380px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
+*[class*="col-"] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.row {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.modal-backdrop {
+  background: #243746 0% 0% no-repeat padding-box;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1500;
+}
+
+.modal-backdrop.show {
+  opacity: 0.8;
+}
+
+.tox.tox-tinymce-aux {
+  /*
+    This is the container of the "add link"-popup from
+    tinyMCE rich text editor. It needs to be above
+    .modal-backdrop in z-index so that it'll show if 
+    there is a rich text editor in the modal.
+  */
+  z-index: 1501;
+}
+
+.rs-picker-daterange-menu {
+  z-index: 9999 !important;
+}
+
+.rs-picker-toggle-wrapper {
+  max-width: 150% !important;
+  width: 102%;
+}
+
+.rs-picker-menu .rs-picker-toolbar-ranges {
+  display: none !important;
+}
+
+.rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+.rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
+  color: #a1a1a1 !important;
+}
+
+.rs-picker-has-value.rs-picker-cleanable .rs-btn .rs-picker-toggle-value {
+  color: #000000 !important;
+}
+
+.rs-picker-default:not(.rs-picker-disabled) .rs-btn-active,
+.rs-picker-default:not(.rs-picker-disabled) .rs-btn:focus {
+  border-color: #000000 !important;
+  border-radius: 4px;
+  border: 2px solid;
+}
+
+.rs-picker-default .rs-picker-toggle.rs-btn {
+  padding-bottom: 5px !important;
+  padding-top: 5px !important;
+  border: 1px solid #c5cace;
+  border-radius: 0px;
+}
+
+.rs-picker-toggle-textbox:hover {
+  border: 2px solid #000000;
+  border-radius: 3px;
+}
+
+.rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
+  -webkit-box-shadow: inset 0 0 0 1px #0e0e0e !important;
+  -webkit-box-shadow: inset 0 0 0 1px var(--rs-input-focus-border);
+  box-shadow: inset 0 0 0 1px #0e0e0e !important;
+}
+
+.rs-btn-primary.rs-btn-disabled,
+.rs-btn-primary:disabled {
+  background-color: #0e0e0e !important;
+  background-color: var(--rs-btn-primary-bg);
+  color: #fff;
+  color: var(--rs-btn-primary-text);
+  opacity: 0.3;
+}
+
+.rs-picker-menu
+  .rs-calendar
+  .rs-calendar-table-cell-selected:hover
+  .rs-calendar-table-cell-content {
+  background-color: #0e0e0e !important;
+  background-color: var(--rs-calendar-cell-selected-hover-bg);
+  color: #fff;
+  color: var(--rs-calendar-date-selected-text);
+}
+
+.rs-btn-primary:focus,
+.rs-btn-primary:hover {
+  background-color: #0e0e0e !important;
+  background-color: var(--rs-btn-primary-hover-bg);
+  color: #fff;
+  color: var(--rs-btn-primary-text);
+}
+
+.rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
+  background-color: #253746 !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
+  color: var(--rs-calendar-date-selected-text);
+}
+
+.rs-btn-primary {
+  background-color: #253746 !important;
+  border: none;
+  color: #fff;
+  color: var(--rs-btn-primary-text);
+}
+
+div[index="0"] .rs-calendar-header-title,
+div[index="1"] .rs-calendar-header-title {
+  background-color: #ffffff !important;
+  color: #253746 !important;
+  font-weight: bold;
+  border: 1px solid #919ba2;
+  padding-top: 5px;
+}
+
+.rs-calendar-header-backward,
+.rs-calendar-header-forward {
+  background-color: #ffffff !important;
+  color: #0e7078 !important;
+  font-weight: bold;
+}
+
+.rs-calendar-header-backward:focus,
+.rs-calendar-header-forward:focus {
+  outline: none !important;
+}
+
+.rs-picker-daterange .rs-picker-toggle.rs-btn .rs-picker-toggle-caret {
+  color: #0e7078;
+}
+.rs-btn-icon.rs-btn-xs > .rs-icon {
+  font-size: 20px !important;
+  font-weight: bolder;
+}
+
+.rs-picker-daterange-content .rs-picker-daterange-header {
+  color: #000000;
+}
+
+.rs-picker-daterange .rs-picker-toggle.rs-btn .rs-picker-toggle-clean,
+.rs-picker-daterange .rs-picker-toggle.rs-btn .rs-picker-toggle-caret {
+  top: 4px !important;
+}

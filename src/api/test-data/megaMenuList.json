@@ -1,0 +1,54 @@
+[
+  {
+    "heading": "Solution",
+    "list": [
+      {
+        "name": "My solutions",
+        "url": "/technology-list-page/my-technologies",
+        "external": false
+      },
+      {
+        "name": "All solutions",
+        "url": "/technology-list-page",
+        "external": false
+      },
+      {
+        "name": "Showcases",
+        "url": "/showcase-of-technologies",
+        "external": false
+      }
+    ],
+    "action": "Register solution"
+  },
+  {
+    "heading": "Intelligence",
+    "list": [
+      {
+        "name": "Reporting and analytics",
+        "url": "/reporting-and-analytics",
+        "external": false
+      }
+    ],
+    "action": null
+  },
+  {
+    "heading": "Help",
+    "list": [
+      {
+        "name": "FAQ",
+        "url": "https://statoilsrm.sharepoint.com/sites/TrainingPortalTDIco-lab/SitePages/Frequently%20asked%20questions.aspx",
+        "external": true
+      },
+      {
+        "name": "Help & training",
+        "url": "https://statoilsrm.sharepoint.com/sites/TrainingPortalTDIco-lab",
+        "external": true
+      },
+      {
+        "name": "Support",
+        "url": "https://equinor.service-now.com/selfservice?id=sc_cat_item&sys_id=b29ff7ce6fb455001f6446916e3ee416",
+        "external": true
+      }
+    ]
+  }
+]

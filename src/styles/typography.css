@@ -1,0 +1,88 @@
+/*
+ * Font imports
+ */
+
+/* Light */
+@font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-Light.eot");
+    src: url("fonts/Equinor-Light.woff2") format("woff2"),
+      url("fonts/Equinor-Light.woff") format("woff"),
+      url("fonts/Equinor-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-LightItalic.eot");
+    src: url("fonts/Equinor-LightItalic.woff2") format("woff2"),
+      url("fonts/Equinor-LightItalic.woff") format("woff"),
+      url("fonts/Equinor-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  /* Regular */
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-Regular.eot");
+    src: url("fonts/Equinor-Regular.woff2") format("woff2"),
+      url("fonts/Equinor-Regular.woff") format("woff"),
+      url("fonts/Equinor-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-Italic.eot");
+    src: url("fonts/Equinor-Italic.woff2") format("woff2"),
+      url("fonts/Equinor-Italic.woff") format("woff"),
+      url("fonts/Equinor-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  /* Medium */
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-Medium.eot");
+    src: url("fonts/Equinor-Medium.woff2") format("woff2"),
+      url("fonts/Equinor-Medium.woff") format("woff"),
+      url("fonts/Equinor-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-MediumItalic.eot");
+    src: url("fonts/Equinor-MediumItalic.woff2") format("woff2"),
+      url("fonts/Equinor-MediumItalic.woff") format("woff"),
+      url("fonts/Equinor-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  /* Bold */
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-Bold.eot");
+    src: url("fonts/Equinor-Bold.woff2") format("woff2"),
+      url("fonts/Equinor-Bold.woff") format("woff"),
+      url("fonts/Equinor-Bold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Equinor";
+    src: url("fonts/Equinor-BoldItalic.eot");
+    src: url("fonts/Equinor-BoldItalic.woff2") format("woff2"),
+      url("fonts/Equinor-BoldItalic.woff") format("woff"),
+      url("fonts/Equinor-BoldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: italic;
+  }
+  

@@ -1,0 +1,30 @@
+{
+  "groupId": 2,
+  "groupName": "Fibre optic measurements for flexible.",
+  "groupDescription": "This group was automatically established by the TDI team for the Strategic solution project.",
+  "createdDate": "10/5/2021 10:12:43 AM",
+  "contactPersons": [
+    {
+      "displayName": "Einar Berentsen",
+      "mail": "eibere@equinor.com",
+      "myProfileUrl": "https://eur.delve.office.com/?u=e2aadc02-1b21-4258-b66b-c28bee1df83a"
+    },
+    {
+      "displayName": "Jigar Kothari",
+      "mail": null,
+      "myProfileUrl": null
+    }
+  ],
+  "groupMembers": [
+    {
+      "techId": "T12-00003",
+      "caseId": "902C73D4-85E3-4B60-8FB8-31A1E37C107A",
+      "trl": "1",
+      "trlText": "Concept demonstrated",
+      "technologyName": "The name of the solution you registered here off ",
+      "communication": "Keep secret",
+      "status": "Cancelled",
+      "currentStage": ""
+    }
+  ]
+}

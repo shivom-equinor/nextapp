@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "question": "Where can I update the communication policy (\"Keep secret\")?",
+    "answer": "In some cases, the actual result ?may differ a lot from the intention. When trying to deliver on one of the goals of the simplification activities last year - to reduce the number of sections in TDI Collaboration -, we unintentionally made it more difficult to find some specific fields. The communication policy field, also known as \"Keep secret\", almost became a secret itself.",
+    "order": "1",
+    "hidden": "true"
+  },
+  {
+    "id": "2",
+    "question": "How can I add effect goals to the business case?",
+    "answer": "A business case is an important artefact, capturing the reasoning for initiating a project or a task. Within the context of a single project, it is about weighing the pros against the cons, and justifying that particular investment. Within a company, it is about prioritisation, and justifying a particular investment at the cost of another. The last couple of years, the TDI technology business case has become increasingly relevant, as framing conditions in our business have changed. As a result, there have been several activities in 2016 in different parts of the organisation looking into practices related to the use of TDI business cases.",
+    "order": "2",
+    "hidden": "true"
+  },
+  {
+    "id": "3",
+    "question": "How can I mark one of the executors as \"lead\"?",
+    "answer": "?Unlike the solution owner and task manager roles, which can only be held by a single person (each), the executor role can be assigned to several project members. This role has broad edit permissions, hence enables the project team to collaborate and contribute in most sections and functions throughout the process",
+    "order": "3",
+    "hidden": "true"
+  },
+  {
+    "id": "4",
+    "question": "How can I see which milestones are delayed?",
+    "answer": "Over the years, we have implemented a variety of functionality aiming to make it easier to keep information up-to-date, ensuring the necessary level of data quality. The data quality section, available in the \"Information security and data quality\" function under \"Adminstrative functions\", checks the quality of specific data and provides suggestions for what to improve. Similarly, a set of self-diagnostic tests are run at regular intervals, generating TDI messages about missing or out-of-date information. ",
+    "order": "4",
+    "hidden": "true"
+  },
+  {
+    "id": "5",
+    "question": "How and where can I change the Ownership of a technology?",
+    "answer": "Technologies\r\n Possibility to filter or sort/group the report by delivery type\r\n Possibility to filter or sort/group the report by type of value creation",
+    "order": "5",
+    "hidden": "true"
+  }
+]
