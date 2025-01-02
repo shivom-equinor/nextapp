@@ -1,9 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 
 import { TertiaryButton } from "../_shared/buttons";
-// import { clearFilters as clear } from "../../redux/actions/technology-list";
 import { ISelectedFilters } from "../../api/models";
 
 interface ClearFiltersProps {
