@@ -1,5 +1,5 @@
-node_modules
-.next
-.git
+node_modules/
+.next/
+.git/
+.vscode/
 *.log
-.vscode

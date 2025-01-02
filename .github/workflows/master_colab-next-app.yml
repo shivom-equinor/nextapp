@@ -14,23 +14,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
+      # Step 2: Set up Node.js (ensure the correct version)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20 # Ensure this matches your Azure runtime
+          node-version: 20 # Ensure this matches your Azure runtime version
 
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build the Next.js app
+      # Step 4: Build the Next.js app with 'standalone' output
       - name: Build the Next.js app
         run: npm run build
 
-      # Step 5: Deploy to Azure Web App
+      # Step 5: Zip the app and verify contents
+      - name: Zip the app
+        run: zip -r app.zip .next package.json package-lock.json public
+
+      # Step 6: List files in the zip to verify exclusions (including node_modules)
+      - name: List contents of zip file
+        run: unzip -l app.zip
+
+      # Step 7: Deploy to Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           publish-profile: ${{ secrets.AZURE_WEBAPP_NEXT_PUBLISH_PROFILE }}
-          package: "."
+          package: "./app.zip"
