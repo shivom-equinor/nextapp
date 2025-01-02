@@ -1,11 +1,6 @@
 const nextConfig = {
-  // Enable styled-components support for SSR and Hydration
-  // compiler: {
-  //   styledComponents: true,
-  // },
-
-  /* config options here */
   reactStrictMode: true,
+  output: "standalone",
   compiler: {
     styledComponents: true,
   },
@@ -25,16 +20,6 @@ const nextConfig = {
 
     return config;
   },
-
-  // Optionally disable linting during builds
-  // eslint: {
-  //   ignoreDuringBuilds: true,
-  // },
-
-  // Optionally disable TypeScript type checking during builds
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
 };
 
 export default nextConfig;
