@@ -162,6 +162,7 @@ const TechnologyRow = ({
           <Title
             to={`${technology.technologyPageURL}/summary`}
             // innerRef={linkRef}
+            prefetch={false}
           >
             {searchText ? (
               <ContentWithHighlightedSearchText

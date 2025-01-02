@@ -12,6 +12,7 @@ export interface LinkProps {
   withExternalIcon?: boolean;
   className?: string;
   innerref?: any;
+  prefetch?: boolean;
   /*
    * Use an onClick event with history.push when needing to
    * do state changes when navigating to another page.
@@ -92,6 +93,7 @@ const NextLink: React.FunctionComponent<LinkProps> = ({
   className,
   children,
   innerref,
+  prefetch = true,
   pushToHistory,
 }) => {
   const onClick = (e: SyntheticEvent) => {
@@ -119,7 +121,7 @@ const NextLink: React.FunctionComponent<LinkProps> = ({
       <span>{children}</span>
     </LinkWithHistoryPush>
   ) : (
-    <RouterLink className={className} href={to}>
+    <RouterLink className={className} prefetch={prefetch} href={to}>
       <span>{children}</span>
     </RouterLink>
   );

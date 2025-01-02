@@ -34,7 +34,7 @@ const RegisterTechnology = () => {
 
   return (
     <RegistrationContainer>
-      <NextLink to="/pitch">
+      <NextLink to="/pitch" prefetch={false}>
         <PrimaryButton
           label="REGISTER SOLUTION"
           icon={Plus}

@@ -217,7 +217,7 @@ const MyTechnologyCard = ({ technology }: MyTechnologyCardProps) => {
           isKeepSecret={communication.trim().toLowerCase() === "keep secret"}
         >
           <Heading className="ellipsis">
-            <HeadingLink href={`${technologyPageURL}/summary`}>
+            <HeadingLink href={`${technologyPageURL}/summary`} prefetch={false}>
               {technology.technologyName}
             </HeadingLink>
           </Heading>

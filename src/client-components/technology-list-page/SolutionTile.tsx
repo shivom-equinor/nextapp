@@ -240,7 +240,7 @@ const SolutionTile = ({ technology, searchText }: SolutionTileProps) => {
         {/* Solution name */}
         {technologyName && (
           <Heading>
-            <HeadingLink href={`${technologyPageURL}/summary`}>
+            <HeadingLink href={`${technologyPageURL}/summary`} prefetch={false}>
               {searchText ? (
                 <ContentWithHighlightedSearchText
                   content={technologyName}
