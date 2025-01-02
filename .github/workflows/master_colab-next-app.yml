@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20 # Ensure this matches your Azure runtime version
 
-      # Step 3: Install dependencies
+      # Step 3: Install dependencies (to generate .next)
       - name: Install dependencies
         run: npm install
 
@@ -28,15 +28,24 @@ jobs:
       - name: Build the Next.js app
         run: npm run build
 
-      # Step 5: Zip the app and verify contents
-      - name: Zip the app
-        run: zip -r app.zip .next package.json package-lock.json public
+      # Step 5: Clean up `node_modules` and unnecessary files
+      - name: Cleanup old files
+        run: |
+          rm -rf node_modules
+          rm -rf .git
+          rm -rf .vscode
+          rm -rf .env
 
-      # Step 6: List files in the zip to verify exclusions (including node_modules)
+      # Step 6: Zip the app without `node_modules` or other unnecessary files
+      - name: Zip the app without node_modules
+        run: |
+          zip -r app.zip .next package.json package-lock.json public
+
+      # Step 7: List files in the zip to verify exclusions (like node_modules)
       - name: List contents of zip file
         run: unzip -l app.zip
 
-      # Step 7: Deploy to Azure Web App
+      # Step 8: Deploy to Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
