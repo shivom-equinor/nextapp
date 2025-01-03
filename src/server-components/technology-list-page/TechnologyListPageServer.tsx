@@ -2,32 +2,15 @@ import {
   getGroupsAndViews,
   getSolutionFiltersAndBrowseByRoles,
   getTechnologyList,
-  // getTechnologyListDetails,
 } from "@/api/technologyAPIs";
 import TechnologyListPage from "@/client-components/technology-list-page/TechnologyListPage";
 
-const fetchTechnologies = async () => {
-  const response = await getTechnologyList();
-
-  // const response = await getTechnologyListDetails("Default", "All solutions");
-  return response;
-};
-
-const fetchFilters = async () => {
-  const response = await getSolutionFiltersAndBrowseByRoles();
-  return response;
-};
-
-const fetchGroupsAndViews = async () => {
-  const response = await getGroupsAndViews();
-  return response;
-};
-
-const TechnologyListPageServer = async () => {
+// Function to fetch all required data for the page
+const fetchData = async () => {
   const [technologiesList, filters, groupsAndViews] = await Promise.all([
-    fetchTechnologies(),
-    fetchFilters(),
-    fetchGroupsAndViews(),
+    getTechnologyList(),
+    getSolutionFiltersAndBrowseByRoles(),
+    getGroupsAndViews(),
   ]);
 
   const mySolutionsStaticFilters = [
@@ -59,6 +42,18 @@ const TechnologyListPageServer = async () => {
     ],
   };
 
+  return {
+    technologiesList,
+    updatedFilters,
+    groupsAndViews,
+  };
+};
+
+// Static generation using the new approach
+const TechnologyListPageServer = async () => {
+  const { technologiesList, updatedFilters, groupsAndViews } =
+    await fetchData();
+
   return (
     <TechnologyListPage
       technologyList={technologiesList}
@@ -67,5 +62,8 @@ const TechnologyListPageServer = async () => {
     />
   );
 };
+
+// Set revalidation time for ISR (Incremental Static Regeneration)
+export const revalidate = 1800; // Revalidate the page every 60 seconds
 
 export default TechnologyListPageServer;
