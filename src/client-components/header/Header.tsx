@@ -58,18 +58,18 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
     "risk-matrix-list-view",
   ];
 
-  const prefetchRoutes = [
-    "/",
-    "/technology-list-page",
-    // Add more routes here...
-  ];
+  // const prefetchRoutes = [
+  //   "/",
+  //   "/technology-list-page",
+  //   // Add more routes here...
+  // ];
 
-  useEffect(() => {
-    // Prefetch routes when the component is mounted on the client
-    prefetchRoutes.forEach((route) => {
-      history.prefetch(route);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Prefetch routes when the component is mounted on the client
+  //   prefetchRoutes.forEach((route) => {
+  //     history.prefetch(route);
+  //   });
+  // }, []);
 
   useEffect(() => {
     setShowMainNav(
