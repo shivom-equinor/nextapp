@@ -3,13 +3,15 @@ import React from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 
-import { ws, whitespace } from "../../../styles/constants";
+import { ws, whitespace, colors } from "../../../styles/constants";
 import { Line, LighterLine, Circle, BigBox, Picture } from "./_skeleton-bases";
 import { LeftCol, RightCol, IndentWrapper } from "./GridElements";
 import { InfoLinksSkeleton } from "./InfoLinksSkeleton";
 
 const Wrapper = styled<any>(Row)`
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
+  background: ${colors.floralWhite.standard};
+  padding-top: ${whitespace.m};
 `;
 
 const BigLine = styled<any>(LighterLine)`
