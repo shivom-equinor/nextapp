@@ -93,7 +93,7 @@ const NextLink: React.FunctionComponent<LinkProps> = ({
   className,
   children,
   innerref,
-  prefetch = false,
+  prefetch = true,
   pushToHistory,
 }) => {
   const onClick = (e: SyntheticEvent) => {
