@@ -4,7 +4,7 @@ import LandingPage from "@/client-components/landing-page/LandingPage";
 import { getMyTechnologies } from "@/api/technologyAPIs";
 
 // Set revalidation interval to 30 minutes (1800 seconds)
-export const revalidate = 1800;
+export const revalidate = 1800000;
 
 async function getData() {
   const response = await getMyTechnologies();

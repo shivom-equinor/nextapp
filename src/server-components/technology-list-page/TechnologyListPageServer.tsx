@@ -64,6 +64,6 @@ const TechnologyListPageServer = async () => {
 };
 
 // Set revalidation time for ISR (Incremental Static Regeneration)
-export const revalidate = 1800; // Revalidate the page every 60 seconds
+export const revalidate = 1800000; // Revalidate the page every 60 seconds
 
 export default TechnologyListPageServer;
