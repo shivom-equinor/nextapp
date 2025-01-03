@@ -159,15 +159,22 @@ const AccountDropdown: React.FunctionComponent<AccountDropdownProps> = ({
           </li>
           {/* For bulk update */}
           <li role="menuitem">
-            <Link to="/bulk-update">Manage portfolio</Link>
+            <Link to="/bulk-update" prefetch={false}>
+              Manage portfolio
+            </Link>
           </li>
           {/* For one pagers */}
           <li role="menuitem">
-            <Link to="/one-pager-list">My solution one pager list</Link>
+            <Link to="/one-pager-list" prefetch={false}>
+              My solution one pager list
+            </Link>
           </li>
           {/* If user is admin then show administration tool menu instead */}
           <li role="menuitem">
-            <Link to="/administration-tool/manage-access-group">
+            <Link
+              to="/administration-tool/manage-access-group"
+              prefetch={false}
+            >
               Administration tool
             </Link>
           </li>
@@ -176,7 +183,7 @@ const AccountDropdown: React.FunctionComponent<AccountDropdownProps> = ({
             onClick={() => {}}
             className="test-my-soln-click" // This class used to test click action in JEST test
           >
-            <Link to="/technology-list-page/my-technologies">My solutions</Link>
+            <Link to="/technology-list-page">My solutions</Link>
           </li>
           <li role="menuitem">
             <a href="/.auth/logout">Log out</a>

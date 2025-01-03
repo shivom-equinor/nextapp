@@ -10,7 +10,7 @@ import { InfoLinksSkeleton } from "./InfoLinksSkeleton";
 
 const Wrapper = styled<any>(Row)`
   /* margin-top: 3rem; */
-  background: ${colors.floralWhite.standard};
+  background: white;
   padding-top: ${whitespace.m};
 `;
 
