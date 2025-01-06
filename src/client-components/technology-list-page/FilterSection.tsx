@@ -16,13 +16,16 @@ import uniqueId from "lodash/uniqueId";
 import { filterTypes } from "./constants";
 import TextField from "../_shared/form-elements/TextField";
 import { IFilterAndCountDetails, IFilterValueWithCount } from "./models";
+import CheckboxElement from "../_shared/form-elements/CheckboxElement";
 
 interface FilterSectionProps {
   filterData: IFilterAndCountDetails;
   solnOrgSearchTerm?: string;
   showHeading?: boolean;
   borderBottom?: boolean;
+  selectedFilters: any;
   handleSolnOrgSearch?: (value: string) => void;
+  handleSelectedFilter: (key: string, value: string) => void;
 }
 
 interface CustomFilter {
@@ -90,10 +93,12 @@ const FilterSection: React.FunctionComponent<FilterSectionProps> = ({
   showHeading = true,
   borderBottom = true,
   solnOrgSearchTerm,
+  selectedFilters,
   // addFilter,
   // removeFilter,
   handleSolnOrgSearch,
   // preselectedFilters,
+  handleSelectedFilter,
 }) => {
   const openByDefault = !showHeading;
   const { name, type, values, displayName } = filterData;
@@ -105,22 +110,36 @@ const FilterSection: React.FunctionComponent<FilterSectionProps> = ({
 
   const shouldRenderOptions: boolean = !!(type && values && values.length > 0);
 
+  function isFilterValueAvailable(filterKey: string, filterValue: string) {
+    // Check if the filter key exists and the value is in the array
+    return (
+      selectedFilters[filterKey] &&
+      selectedFilters[filterKey].includes(filterValue)
+    );
+  }
+
   const renderOptions = () =>
     shouldRenderOptions &&
     values &&
-    values.map((option: IFilterValueWithCount, key: number) => {
+    values.map((option: any, key: number) => {
       return (
         option && (
-          <Checkbox
-            uniqueId={uniqueId()}
-            key={key}
-            label={option as unknown as string}
-            value={option as unknown as string}
-            name={name}
-            onChange={() => {}}
-            isPreChecked={false}
-            overrideCheck={true}
-          />
+          <>
+            <CheckboxElement
+              uniqueId={uniqueId()}
+              label={`${option.value as unknown as string} (${option.count})`}
+              value={option.value as unknown as string}
+              name={name}
+              onChange={(e) =>
+                handleSelectedFilter(name, option.value as unknown as string)
+              }
+              isPreChecked={isFilterValueAvailable(
+                name,
+                option.value as unknown as string
+              )}
+              overrideCheck={true}
+            />
+          </>
         )
       );
     });

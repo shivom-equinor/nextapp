@@ -20,8 +20,10 @@ interface FilterContainerProps {
   selectedGroup: string;
   selectedView: string;
   solutionList: ITechnologyDetails[];
+  selectedFilters: any;
   handleToggle: () => void;
   handleSolnOrgSearch: (value: string) => void;
+  handleSelectedFilter: (key: string, value: string) => void;
 }
 
 const TopRow = styled.div`
@@ -40,6 +42,8 @@ const FilterContainer: React.FunctionComponent<FilterContainerProps> = ({
   solutionList,
   selectedGroup,
   selectedView,
+  selectedFilters,
+  handleSelectedFilter,
 }) => {
   const filterWithMySolutions: IFilterSectionUpdated = {
     displayName: "My solutions",
@@ -103,6 +107,8 @@ const FilterContainer: React.FunctionComponent<FilterContainerProps> = ({
                       filterData={filterOption}
                       showHeading={false}
                       borderBottom={false}
+                      selectedFilters={selectedFilters}
+                      handleSelectedFilter={handleSelectedFilter}
                     />
                   );
                 })}
@@ -129,7 +135,9 @@ const FilterContainer: React.FunctionComponent<FilterContainerProps> = ({
                 key={key}
                 filterData={section}
                 solnOrgSearchTerm={solnOrgSearchTerm}
+                selectedFilters={selectedFilters}
                 handleSolnOrgSearch={handleSolnOrgSearch}
+                handleSelectedFilter={handleSelectedFilter}
               />
             ))
         )}

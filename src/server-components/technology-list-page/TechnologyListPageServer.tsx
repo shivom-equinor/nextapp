@@ -34,12 +34,67 @@ const fetchData = async () => {
     },
   ];
 
+  function countSolutionsForFilters(filters: any, solutions: any) {
+    let result: any = [];
+
+    // Iterate through each filter object in the filters array
+    filters?.forEach((filter: any) => {
+      let filterResult: any = {
+        name: filter.name,
+        displayName: filter.displayName,
+        type: filter.type,
+        values: [],
+      };
+
+      // For each value in the filter's values array
+      filter.values?.forEach((filterValue: any) => {
+        let count = 0;
+
+        // Special handling for the "myTechnology" filter
+        if (filter.name === "myTechnology") {
+          // Count all solutions where myTechnology value is "1"
+          count = solutions.filter(
+            (solution: any) => solution.myTechnology === "1"
+          ).length;
+        } else if (filter.name === "myFavoriteTechnology") {
+          count = solutions.filter(
+            (solution: any) => solution.myFavoriteTechnology === "1"
+          ).length;
+        } else if (filter.name === "isWaitlist") {
+          count = solutions.filter(
+            (solution: any) => solution.isWaitlist === "1"
+          ).length;
+        } else {
+          // For other filters, count how many solutions match the current filter value
+          count = solutions.filter((solution: any) => {
+            return solution[filter.name]?.includes(filterValue);
+          }).length;
+        }
+
+        // Push the value and its count into the filter's result
+        filterResult.values.push({ value: filterValue, count: count });
+      });
+
+      // Add this filter's result to the main result array
+      result.push(filterResult);
+    });
+
+    return result;
+  }
+
+  const solutionListFilters = [
+    ...filters.solutionListFilters,
+    ...mySolutionsStaticFilters,
+  ];
+
+  const filtersWithCount = countSolutionsForFilters(
+    solutionListFilters,
+    technologiesList?.technologyDetails
+  );
+
   const updatedFilters = {
     ...filters,
-    solutionListFilters: [
-      ...filters.solutionListFilters,
-      ...mySolutionsStaticFilters,
-    ],
+    solutionListFilters: filtersWithCount,
   };
 
   return {

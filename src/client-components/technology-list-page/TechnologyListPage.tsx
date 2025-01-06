@@ -89,6 +89,9 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
   const [techList, setTechList] = useState(
     technologyList ? technologyList : null
   );
+  const [initialTechList, setInitialTechList] = useState(
+    technologyList ? technologyList : null
+  );
   const [isFetchingSolutionList, setIsFetchingSolutionList] = useState(false);
   const [isFetchingFilters, setIsFetchingFilters] = useState(false);
   const [columns, setColumns] = useState(filters?.solutionListColumns);
@@ -97,6 +100,7 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
   const [groupAndViewName, setGroupAndViewName] = useState(
     groupsAndViews ? groupsAndViews : []
   );
+  const [selectedFilters, setSelectedFilters] = useState({});
   // const mySolutionsStaticFilters = [
   //   {
   //     displayName: "My solutions",
@@ -175,6 +179,102 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
 
   const handleDefaultView = (pageView: string) => setDefaultView(pageView);
 
+  // Function to dynamically filter values based on the filters object
+  function filterValues(filters: any, values: any) {
+    return values.filter((value: any) => {
+      // Handle "My solutions" filter with AND logic
+      if (filters["myTechnology"]?.includes("My solutions")) {
+        // Exclude records where myTechnology is not "1"
+        if (value.myTechnology !== "1") {
+          return false;
+        }
+      }
+
+      if (filters["myFavoriteTechnology"]?.includes("Solutions I follow")) {
+        // Only include records with myTechnology = "1"
+        if (value.myFavoriteTechnology !== "1") {
+          return false; // Exclude the record
+        }
+      }
+
+      if (filters["isWaitlist"]?.includes("Waitlisted Solutions")) {
+        // Only include records with myTechnology = "1"
+        if (value.isWaitlist !== "1") {
+          return false; // Exclude the record
+        }
+      }
+
+      // Process other filters
+      return Object.entries(filters).every(([key, filterValues]) => {
+        // Skip "My solutions" as it's already handled
+        if (
+          key === "myTechnology" ||
+          key === "myFavoriteTechnology" ||
+          key === "isWaitlist"
+        )
+          return true;
+
+        // Special handling for projectCategory (array of values)
+        if (key === "projectCategories" && Array.isArray(filterValues)) {
+          // Ensure that any value in the filterValues array matches the value in value[key]
+          return filterValues.some((category: any) =>
+            value[key]?.includes(category)
+          );
+        }
+
+        if (Array.isArray(filterValues)) {
+          // OR logic for each filter key
+          return filterValues.includes(value[key]);
+        }
+        return true; // If no filters exist for this key, pass the check
+      });
+    });
+  }
+
+  // Adding filters dynamically
+  const addFilter = (filterKey: string, filterValue: string) => {
+    setSelectedFilters((prevFilters) => {
+      // Create a copy of the previous filters
+      const updatedFilters: any = { ...prevFilters };
+
+      if (updatedFilters[filterKey]) {
+        // If the filterKey already exists, check if the value exists
+        if (updatedFilters[filterKey].includes(filterValue)) {
+          // If the value exists, remove it
+          updatedFilters[filterKey] = updatedFilters[filterKey].filter(
+            (value: any) => value !== filterValue
+          );
+
+          // If the array becomes empty, remove the key from the filters
+          if (updatedFilters[filterKey].length === 0) {
+            delete updatedFilters[filterKey];
+          }
+        } else {
+          // If the value does not exist, add it
+          updatedFilters[filterKey].push(filterValue);
+        }
+      } else {
+        // If the filterKey does not exist, initialize it with the new value
+        updatedFilters[filterKey] = [filterValue];
+      }
+
+      return updatedFilters;
+    });
+  };
+
+  useEffect(() => {
+    // Applying the filters
+    const filteredValues = filterValues(
+      selectedFilters,
+      initialTechList?.technologyDetails
+    );
+    if (Object.keys(selectedFilters).length === 0) {
+      setTechList(initialTechList);
+    } else {
+      setTechList({ ...initialTechList, technologyDetails: filteredValues });
+    }
+  }, [selectedFilters]);
+
   return (
     <>
       <h1>Solutions</h1>
@@ -191,6 +291,8 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
             filterSections={allFilters as unknown as IFilterSectionUpdated[]}
             isFetching={isFetchingFilters}
             solutionList={techList as unknown as ITechnologyDetails[]}
+            selectedFilters={selectedFilters}
+            handleSelectedFilter={addFilter}
           />
         </Filters>
         <TechnologyList isFilterExpanded={isFilterOpen}>
