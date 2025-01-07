@@ -8,6 +8,7 @@ import Container from "@/client-components/_shared/Container";
 import ServerHeader from "@/server-components/core/ServerHeader";
 import ServerFooter from "@/server-components/core/ServerFooter";
 import StyledComponentsRegistry from "../helpers/registry";
+import { ReactQueryProvider } from "./react-query/providers/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "co-lab",
@@ -21,11 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledComponentsRegistry>
-          <ServerHeader />
-          <Container>{children}</Container>
-          <ServerFooter />
-        </StyledComponentsRegistry>
+        <ReactQueryProvider>
+          {/* Wrap with the ReactQueryProvider */}
+          <StyledComponentsRegistry>
+            <ServerHeader />
+            <Container>{children}</Container>
+            <ServerFooter />
+          </StyledComponentsRegistry>
+        </ReactQueryProvider>
       </body>
     </html>
   );

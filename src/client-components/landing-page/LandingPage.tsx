@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 
@@ -13,18 +13,19 @@ import {
   MyTechTabSkeleton,
 } from "../_shared/skeleton-screens/MyTechCardSkeleton";
 import SectionBlock from "../_shared/SectionBlock";
+import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
 
-const LandingPage: React.FC<any> = ({ data }: any) => {
+const LandingPage: React.FC<any> = () => {
   const router = useRouter();
-  const [myTechnologies, setMyTechnologies] = useState<any>([]);
-  const [isFetchingTechList, setIsFetchingTechList] = useState(true);
-
-  useEffect(() => {
-    getMyTechnologies().then((data: any) => {
-      setMyTechnologies(data);
-      setIsFetchingTechList(false);
-    });
-  }, []);
+  const {
+    data: myTechnologiesData,
+    isLoading,
+    error,
+  } = useFetchingQuery({
+    queryKey: ["myTechnologies"],
+    queryFn: getMyTechnologies,
+    staleTime: 30 * 60 * 1000,
+  });
 
   return (
     <Row>
@@ -35,19 +36,21 @@ const LandingPage: React.FC<any> = ({ data }: any) => {
         <RegisterTechnology />
       </Col>
       <Col lg={8}>
-        {isFetchingTechList ? (
-          <>
-            <SectionBlock heading="My solutions">
-              <MyTechTabSkeleton />
-              <MyTechCardSkeleton />
-              <MyTechCardSkeleton />
-              <MyTechCardSkeleton />
-            </SectionBlock>
-          </>
+        {isLoading ? (
+          <SectionBlock heading="My solutions">
+            <MyTechTabSkeleton />
+            <MyTechCardSkeleton />
+            <MyTechCardSkeleton />
+            <MyTechCardSkeleton />
+          </SectionBlock>
+        ) : error ? (
+          <SectionBlock heading="Error">
+            <p>Failed to load technologies. Please try again later.</p>
+          </SectionBlock>
         ) : (
           <MyTechnologies
             router={router}
-            myTechnologies={myTechnologies?.myTechnologyDetails}
+            myTechnologies={myTechnologiesData?.myTechnologyDetails}
           />
         )}
       </Col>

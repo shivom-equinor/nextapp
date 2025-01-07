@@ -9,8 +9,8 @@ import Logo from "./Logo";
 import { ws, z } from "../../styles/constants";
 import MegaMenu from "./megamenu/MegaMenuSection";
 import ExpandSearch from "./ExpandSearch";
-import { IUserDetails } from "@/api/models";
 import { getUserDetails } from "@/api/technologyAPIs";
+import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
 
 interface HeaderProps {
   userDetails: unknown;
@@ -46,8 +46,8 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
   userDetails,
 }) => {
   const [showMainNav, setShowMainNav] = useState(true);
-  const [childUserDetails, setUserDetails] = useState(null);
   const history = useRouter();
+
   const HideMainNavOnURL: string[] = [
     "audit-report",
     "trl4-preview-document",
@@ -58,19 +58,6 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
     "risk-matrix-list-view",
   ];
 
-  // const prefetchRoutes = [
-  //   "/",
-  //   "/technology-list-page",
-  //   // Add more routes here...
-  // ];
-
-  // useEffect(() => {
-  //   // Prefetch routes when the component is mounted on the client
-  //   prefetchRoutes.forEach((route) => {
-  //     history.prefetch(route);
-  //   });
-  // }, []);
-
   useEffect(() => {
     setShowMainNav(
       !HideMainNavOnURL.includes(
@@ -79,13 +66,16 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
     );
   }, []);
 
-  useEffect(() => {
-    getUserDetails().then((data: any) => {
-      setUserDetails(data);
-    });
-  }, []);
-
-  // if (!childUserDetails) return "Loading...";
+  // Use the custom query hook to fetch user details
+  const {
+    data: childUserDetails,
+    isLoading,
+    error,
+  } = useFetchingQuery({
+    queryKey: ["userDetails"], // Unique key for the query
+    queryFn: getUserDetails, // Fetch function
+    staleTime: 24 * 60 * 60 * 1000, // Optional: cache data for 30 minutes
+  });
 
   return (
     <StyledHeader>
@@ -114,5 +104,5 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
 };
 
 const Header = ConnectedHeader;
-// Using React.memo for memoizing the Header component which mount only on first load and when update need in this.
+// Using React.memo for memoizing the Header component which mounts only on the first load and when updates are needed.
 export default memo(Header);

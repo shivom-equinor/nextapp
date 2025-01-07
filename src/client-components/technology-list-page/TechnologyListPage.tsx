@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 
 import TechnologyListContainer from "./TechnologyListContainer";
@@ -10,18 +10,16 @@ import { numericValue, whitespace } from "../../styles/constants";
 import { remCalc } from "../../styles/functions";
 import { TABLE_VIEW } from "./constants";
 import { IFilterSectionUpdated } from "@/modals/TechnologyListModals";
+import { useQuery } from "@tanstack/react-query";
 import {
   getGroupsAndViews,
   getSolutionFiltersAndBrowseByRoles,
   getTechnologyList,
 } from "@/api/technologyAPIs";
 import { ITechnologyDetails } from "@/api/models";
+import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
 
-interface TechnologyListProps {
-  // technologyList: any;
-  // filters: any;
-  // groupsAndViews: any;
-}
+interface TechnologyListProps {}
 
 export interface ToggleProps {
   isFilterExpanded?: boolean;
@@ -29,7 +27,6 @@ export interface ToggleProps {
 
 const TechnologyListWrapper = styled.div<ToggleProps>`
   display: flex;
-
   @media (max-width: 992px) {
     flex-wrap: ${(props) => (props.isFilterExpanded ? "wrap" : "nowrap")};
   }
@@ -40,10 +37,8 @@ const Filters = styled.div<ToggleProps>`
   width: ${(props) =>
     props.isFilterExpanded ? `${numericValue.value300}px` : "0px"};
   margin-right: ${(props) => (props.isFilterExpanded ? whitespace.m : "0px")};
-  -webkit-transition: width 0.3s ease-in-out, margin-right 0.3s ease-in-out;
   transition: width 0.3s ease-in-out, margin-right 0.3s ease-in-out;
   overflow: hidden;
-
   @media (max-width: 992px) {
     margin-right: ${remCalc(0)};
   }
@@ -53,49 +48,23 @@ const TechnologyList = styled.div<ToggleProps>`
   flex-grow: 1;
   margin-left: ${(props) => (props.isFilterExpanded ? whitespace.m : "0px")};
   width: ${(props) => (props.isFilterExpanded ? "calc(100% - 332px)" : "100%")};
-  -webkit-transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
   transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
-
   @media (max-width: 992px) {
     margin-left: ${remCalc(0)};
     width: ${numericValue.value100}%;
   }
 `;
 
-const FavSearchSkeletonWrapper = styled.div`
-  background-color: white;
-  padding: ${whitespace.m};
-`;
-
-const SelectedFavSearch = styled.div`
-  margin-bottom: ${whitespace.m};
-  font-size: ${remCalc(14)};
-  font-weight: ${numericValue.value500};
-`;
-
-const TechnologyListPage: React.FC<TechnologyListProps> = (
-  {
-    // technologyList,
-    // filters,
-    // groupsAndViews,
-  }
-) => {
+const TechnologyListPage: React.FC<TechnologyListProps> = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [solnOrgSearchTerm, setSolnOrgSearchTerm] = useState("");
   const [defaultView, setDefaultView] = useState(TABLE_VIEW);
   const [hasUnsavedChange, setHasUnsavedChange] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState({});
+  const [filtersAllDetails, setAllFiltersDetails] = useState(null);
   const groupName = "Default";
   const viewName = "All solutions";
-  const [techList, setTechList] = useState<any>(null);
-  const [initialTechList, setInitialTechList] = useState<any>(null);
-  const [isFetchingSolutionList, setIsFetchingSolutionList] = useState(true);
-  const [isFetchingFilters, setIsFetchingFilters] = useState(true);
-  const [columns, setColumns] = useState(null);
-  const [allFilters, setFilters] = useState(null);
-  const [browseByRoles, setBrowseByRoles] = useState(null);
-  const [groupAndViewName, setGroupAndViewName] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState({});
   const mySolutionsStaticFilters = [
     {
       displayName: "My solutions",
@@ -117,46 +86,68 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
     },
   ];
 
-  const handleSearch = (value: string): void => setSearchTerm(value);
-  const handleSolnOrgSearch = (value: string): void =>
-    setSolnOrgSearchTerm(value);
+  const { data: techListData, isLoading: isFetchingSolutionList } =
+    useFetchingQuery({
+      queryKey: ["technologyList"],
+      queryFn: getTechnologyList,
+      staleTime: 30 * 60 * 1000,
+    });
+
+  const { data: filtersData, isLoading: isFetchingFilters } = useFetchingQuery({
+    queryKey: ["solutionFiltersAndBrowseByRoles"],
+    queryFn: getSolutionFiltersAndBrowseByRoles,
+    staleTime: 30 * 60 * 1000,
+  });
+
+  const { data: groupAndViewName } = useFetchingQuery({
+    queryKey: ["groupsAndViews"],
+    queryFn: getGroupsAndViews,
+    staleTime: 30 * 60 * 1000,
+  });
+
+  const initialTechList = techListData || null;
+  const techList = useMemo(() => {
+    if (!selectedFilters || !initialTechList?.technologyDetails)
+      return initialTechList;
+
+    const filteredValues = filterValues(
+      selectedFilters,
+      initialTechList.technologyDetails
+    );
+    return {
+      ...initialTechList,
+      technologyDetails: filteredValues,
+    };
+  }, [selectedFilters, initialTechList]);
+
   const handleToggle = () => setIsFilterOpen(!isFilterOpen);
+  const handleSearch = (value: string) => setSearchTerm(value);
+  const handleSolnOrgSearch = (value: string) => setSolnOrgSearchTerm(value);
+  const handleDefaultView = (pageView: string) => setDefaultView(pageView);
   const handleUnsavedChange = (hasUnsavedChange: boolean) =>
     setHasUnsavedChange(hasUnsavedChange);
 
-  useEffect(() => {
-    getTechnologyList()
-      .then((data: any) => {
-        setTechList(data);
-        setInitialTechList(data);
-        setIsFetchingSolutionList(false); // TODO : use for skeleton loading
-      })
-      .catch(() => {
-        setIsFetchingSolutionList(false);
-      });
+  const addFilter = (filterKey: string, filterValue: string) => {
+    setSelectedFilters((prevFilters) => {
+      const updatedFilters: any = { ...prevFilters };
 
-    getSolutionFiltersAndBrowseByRoles()
-      .then((data: any) => {
-        setBrowseByRoles(data.browseByRoles);
-        setFilters([
-          ...data.solutionListFilters,
-          ...mySolutionsStaticFilters,
-        ] as any);
-        setColumns(data.solutionListColumns);
-        setIsFetchingFilters(false); // TODO : use for skeleton loading
-      })
-      .catch(() => {
-        setIsFetchingFilters(false);
-      });
+      if (updatedFilters[filterKey]) {
+        if (updatedFilters[filterKey].includes(filterValue)) {
+          updatedFilters[filterKey] = updatedFilters[filterKey].filter(
+            (value: any) => value !== filterValue
+          );
+          if (updatedFilters[filterKey].length === 0)
+            delete updatedFilters[filterKey];
+        } else {
+          updatedFilters[filterKey].push(filterValue);
+        }
+      } else {
+        updatedFilters[filterKey] = [filterValue];
+      }
 
-    getGroupsAndViews()
-      .then((data: any) => {
-        setGroupAndViewName(data);
-      })
-      .catch(() => {});
-  }, []);
-
-  const handleDefaultView = (pageView: string) => setDefaultView(pageView);
+      return updatedFilters;
+    });
+  };
 
   // Function to dynamically filter values based on the filters object
   function filterValues(filters: any, values: any) {
@@ -210,51 +201,22 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
     });
   }
 
-  // Adding filters dynamically
-  const addFilter = (filterKey: string, filterValue: string) => {
-    setSelectedFilters((prevFilters) => {
-      // Create a copy of the previous filters
-      const updatedFilters: any = { ...prevFilters };
-
-      if (updatedFilters[filterKey]) {
-        // If the filterKey already exists, check if the value exists
-        if (updatedFilters[filterKey].includes(filterValue)) {
-          // If the value exists, remove it
-          updatedFilters[filterKey] = updatedFilters[filterKey].filter(
-            (value: any) => value !== filterValue
-          );
-
-          // If the array becomes empty, remove the key from the filters
-          if (updatedFilters[filterKey].length === 0) {
-            delete updatedFilters[filterKey];
-          }
-        } else {
-          // If the value does not exist, add it
-          updatedFilters[filterKey].push(filterValue);
-        }
-      } else {
-        // If the filterKey does not exist, initialize it with the new value
-        updatedFilters[filterKey] = [filterValue];
-      }
-
-      return updatedFilters;
-    });
-  };
-
-  useEffect(() => {
-    // Applying the filters
-    const filteredValues = filterValues(
-      selectedFilters,
-      initialTechList?.technologyDetails
-    );
-    if (Object.keys(selectedFilters).length === 0) {
-      setTechList(initialTechList);
-    } else {
-      setTechList({ ...initialTechList, technologyDetails: filteredValues });
+  // Inside the component
+  const filtersWithCount = useMemo(() => {
+    if (
+      isFetchingFilters ||
+      isFetchingSolutionList ||
+      !filtersData ||
+      !initialTechList?.technologyDetails
+    ) {
+      return [];
     }
-  }, [selectedFilters, initialTechList]);
 
-  useEffect(() => {
+    const filters = [
+      ...filtersData.solutionListFilters,
+      ...mySolutionsStaticFilters,
+    ];
+
     function countSolutionsForFilters(filters: any, solutions: any) {
       let result: any = [];
 
@@ -303,13 +265,21 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
       return result;
     }
 
-    const filtersWithCount = countSolutionsForFilters(
-      allFilters,
+    return countSolutionsForFilters(
+      filters,
       initialTechList?.technologyDetails
     );
+  }, [
+    filtersData,
+    initialTechList?.technologyDetails,
+    isFetchingFilters,
+    isFetchingSolutionList,
+  ]);
 
-    setFilters(filtersWithCount);
-  }, [isFetchingFilters, isFetchingSolutionList]);
+  // Use filtersWithCount wherever needed
+  useEffect(() => {
+    setAllFiltersDetails(filtersWithCount);
+  }, [filtersWithCount]);
 
   return (
     <>
@@ -324,9 +294,9 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
             solnOrgSearchTerm={solnOrgSearchTerm}
             handleSolnOrgSearch={handleSolnOrgSearch}
             isLoading={isFetchingFilters}
-            filterSections={allFilters as unknown as IFilterSectionUpdated[]}
+            filterSections={filtersAllDetails ? filtersAllDetails : []}
             isFetching={isFetchingFilters}
-            solutionList={techList as unknown as ITechnologyDetails[]}
+            solutionList={techList?.technologyDetails}
             selectedFilters={selectedFilters}
             handleSelectedFilter={addFilter}
           />
@@ -335,7 +305,7 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
           <BrowseByContainer
             searchValue={searchTerm}
             isFilterOpen={isFilterOpen}
-            browseByRoles={browseByRoles}
+            browseByRoles={filtersData?.browseByRoles}
             groupsAndViews={groupAndViewName}
             selectedGroup={groupName}
             selectedView={viewName}
@@ -343,9 +313,7 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
           />
           <TechnologyListContainer
             isFetchingSolutionList={isFetchingSolutionList}
-            techList={
-              techList?.technologyDetails as unknown as ITechnologyDetails[]
-            }
+            techList={techList?.technologyDetails}
             isFilterOpen={isFilterOpen}
             handleToggle={handleToggle}
             searchValue={searchTerm}
@@ -354,8 +322,8 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
             hasUnsavedChange={hasUnsavedChange}
             handleUnsavedChange={handleUnsavedChange}
             isLoading={isFetchingSolutionList}
-            filters={allFilters}
-            columns={columns}
+            filters={filtersData?.solutionListFilters}
+            columns={filtersData?.solutionListColumns}
             selectedGroup={groupName}
             handleDefaultView={handleDefaultView}
           />
