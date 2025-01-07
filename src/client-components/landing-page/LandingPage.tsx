@@ -8,14 +8,21 @@ import SearchField from "./SearchField";
 import RegisterTechnology from "./RegisterTechnology";
 import MyTechnologies from "./MyTechnologies";
 import { getMyTechnologies } from "@/api/technologyAPIs";
+import {
+  MyTechCardSkeleton,
+  MyTechTabSkeleton,
+} from "../_shared/skeleton-screens/MyTechCardSkeleton";
+import SectionBlock from "../_shared/SectionBlock";
 
 const LandingPage: React.FC<any> = ({ data }: any) => {
   const router = useRouter();
   const [myTechnologies, setMyTechnologies] = useState<any>([]);
+  const [isFetchingTechList, setIsFetchingTechList] = useState(true);
 
   useEffect(() => {
     getMyTechnologies().then((data: any) => {
       setMyTechnologies(data);
+      setIsFetchingTechList(false);
     });
   }, []);
 
@@ -28,10 +35,21 @@ const LandingPage: React.FC<any> = ({ data }: any) => {
         <RegisterTechnology />
       </Col>
       <Col lg={8}>
-        <MyTechnologies
-          router={router}
-          myTechnologies={myTechnologies?.myTechnologyDetails}
-        />
+        {isFetchingTechList ? (
+          <>
+            <SectionBlock heading="My solutions">
+              <MyTechTabSkeleton />
+              <MyTechCardSkeleton />
+              <MyTechCardSkeleton />
+              <MyTechCardSkeleton />
+            </SectionBlock>
+          </>
+        ) : (
+          <MyTechnologies
+            router={router}
+            myTechnologies={myTechnologies?.myTechnologyDetails}
+          />
+        )}
       </Col>
     </Row>
   );

@@ -61,7 +61,7 @@ const SearchButton = styled(CTAButton)`
   width: 120px;
   margin: 0 ${ws.padding};
   margin-right: 0;
-  > img {
+  > svg {
     margin: auto;
   }
 `;

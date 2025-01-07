@@ -256,8 +256,6 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
 
   useEffect(() => {
     function countSolutionsForFilters(filters: any, solutions: any) {
-      console.log("filters", filters);
-      console.log("solutions", solutions);
       let result: any = [];
 
       // Iterate through each filter object in the filters array
@@ -301,7 +299,7 @@ const TechnologyListPage: React.FC<TechnologyListProps> = (
         // Add this filter's result to the main result array
         result.push(filterResult);
       });
-      console.log("result", result);
+
       return result;
     }
 
