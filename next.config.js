@@ -1,8 +1,14 @@
 const nextConfig = {
-  // reactStrictMode: true,
-  // output: "standalone",
   compiler: {
     styledComponents: true,
+  },
+
+  // 5 hour default stale time for app routes
+  experimental: {
+    staleTimes: {
+      dynamic: 18000,
+      static: 18000,
+    },
   },
 
   webpack(config, { isServer }) {
@@ -17,10 +23,6 @@ const nextConfig = {
         },
       ],
     });
-
-    // if (!isServer) {
-    //   config.optimization.splitChunks.maxSize = 200000; // 200KB
-    // }
 
     return config;
   },

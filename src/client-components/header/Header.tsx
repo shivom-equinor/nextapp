@@ -9,8 +9,8 @@ import Logo from "./Logo";
 import { ws, z } from "../../styles/constants";
 import MegaMenu from "./megamenu/MegaMenuSection";
 import ExpandSearch from "./ExpandSearch";
-import { getUserDetails } from "@/api/technologyAPIs";
-import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
+// import { getUserDetails } from "@/api/technologyAPIs";
+// import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
 
 interface HeaderProps {}
 
@@ -63,15 +63,15 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({}) => {
   }, []);
 
   // Use the custom query hook to fetch user details
-  const {
-    data: childUserDetails,
-    isLoading,
-    error,
-  } = useFetchingQuery({
-    queryKey: ["userDetails"], // Unique key for the query
-    queryFn: getUserDetails, // Fetch function
-    staleTime: 30 * 60 * 1000, // Optional: cache data for 30 minutes
-  });
+  // const {
+  //   data: childUserDetails,
+  //   isLoading,
+  //   error,
+  // } = useFetchingQuery({
+  //   queryKey: ["userDetails"], // Unique key for the query
+  //   queryFn: getUserDetails, // Fetch function
+  //   staleTime: 30 * 60 * 1000, // Optional: cache data for 30 minutes
+  // });
 
   return (
     <StyledHeader>
@@ -86,7 +86,7 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({}) => {
                 <ExpandSearch />
               </CenteredLi>
               <li>
-                <AccountDropdown user={childUserDetails} />
+                <AccountDropdown user={null} />
               </li>
               <li>
                 <MegaMenu history={history} />

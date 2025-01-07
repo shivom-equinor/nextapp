@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "semantic-ui-css/components/dropdown.min.css";
@@ -10,22 +9,20 @@ import { ReactQueryProvider } from "./react-query/providers/ReactQueryProvider";
 
 // Dynamically import components
 const ServerHeader = dynamic(
-  () => import("@/server-components/core/ServerHeader"),
-  { ssr: false }
+  () => import("@/server-components/core/ServerHeader")
 );
 
 const Container = dynamic(
-  () => import("@/client-components/_shared/Container"),
-  { ssr: false }
+  () => import("@/client-components/_shared/Container")
 );
 
 const ServerFooter = dynamic(
-  () => import("@/server-components/core/ServerFooter"),
-  { ssr: false }
+  () => import("@/server-components/core/ServerFooter")
 );
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "co-lab",
+  revalidate: 0,
 };
 
 export default function RootLayout({

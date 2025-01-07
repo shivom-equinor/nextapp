@@ -149,7 +149,7 @@ const AccountDropdown: React.FunctionComponent<AccountDropdownProps> = ({
         className="add-custom-field-close"
       >
         <DefaultProfileImage />
-        <span className="ellipsis">{user?.displayName}</span>
+        <span className="ellipsis">{"Shivom"}</span>
         <ArrowDown id="toggle-arrow" />
       </DropdownToggle>
       {isopen && (
