@@ -12,9 +12,7 @@ import ExpandSearch from "./ExpandSearch";
 import { getUserDetails } from "@/api/technologyAPIs";
 import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
 
-interface HeaderProps {
-  userDetails: unknown;
-}
+interface HeaderProps {}
 
 const StyledHeader = styled.header`
   background-color: white;
@@ -42,9 +40,7 @@ const CenteredLi = styled.li`
   padding: 0 ${ws.padding};
 `;
 
-const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
-  userDetails,
-}) => {
+const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({}) => {
   const [showMainNav, setShowMainNav] = useState(true);
   const history = useRouter();
 
@@ -74,7 +70,7 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
   } = useFetchingQuery({
     queryKey: ["userDetails"], // Unique key for the query
     queryFn: getUserDetails, // Fetch function
-    staleTime: 24 * 60 * 60 * 1000, // Optional: cache data for 30 minutes
+    staleTime: 30 * 60 * 1000, // Optional: cache data for 30 minutes
   });
 
   return (

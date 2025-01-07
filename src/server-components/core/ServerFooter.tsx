@@ -1,3 +1,4 @@
+"use client";
 import Footer from "@/client-components/footer/Footer";
 
 const ServerFooter = () => {

@@ -1,28 +1,26 @@
 const nextConfig = {
-  reactStrictMode: true,
-  output: "standalone",
+  // reactStrictMode: true,
+  // output: "standalone",
   compiler: {
     styledComponents: true,
   },
 
   webpack(config, { isServer }) {
-    // Add SVG loader
     config.module.rules.push({
       test: /\.svg$/,
       use: [
         {
           loader: "@svgr/webpack",
           options: {
-            svgo: false, // Optional: Disable SVGO optimizations
+            svgo: false,
           },
         },
       ],
     });
 
-    // Adjust chunk size for splitting (client-side only)
-    if (!isServer) {
-      config.optimization.splitChunks.maxSize = 200000; // Set chunk size for splitting
-    }
+    // if (!isServer) {
+    //   config.optimization.splitChunks.maxSize = 200000; // 200KB
+    // }
 
     return config;
   },

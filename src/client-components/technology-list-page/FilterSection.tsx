@@ -79,7 +79,7 @@ const TextFieldWrapper = styled.div`
 
   input {
     font-size: ${remCalc(14)};
-    padding-bottom: ${whitespace.m};
+    background-color: #fff;
 
     ::-webkit-input-placeholder {
       white-space: pre-line;

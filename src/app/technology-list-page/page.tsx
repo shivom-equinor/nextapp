@@ -1,18 +1,18 @@
+"use client";
 import dynamic from "next/dynamic";
 
 // Dynamically import TechnologyListPage
 const TechnologyListPage = dynamic(
   () => import("@/client-components/technology-list-page/TechnologyListPage"),
-  { ssr: false } // Optional: Disable SSR for this component
+  { ssr: false }
 );
 
-const TechnologyListingPage = async () => {
+const TechnologyListingPage = () => {
   return (
     <>
-      {/* <TechnologyListPageServer /> */}
       <TechnologyListPage />
     </>
   );
 };
 
-export default TechnologyListPage;
+export default TechnologyListingPage;
