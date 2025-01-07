@@ -5,7 +5,8 @@ const nextConfig = {
     styledComponents: true,
   },
 
-  webpack(config) {
+  webpack(config, { isServer }) {
+    // Add SVG loader
     config.module.rules.push({
       test: /\.svg$/,
       use: [
@@ -17,6 +18,11 @@ const nextConfig = {
         },
       ],
     });
+
+    // Adjust chunk size for splitting (client-side only)
+    if (!isServer) {
+      config.optimization.splitChunks.maxSize = 200000; // Set chunk size for splitting
+    }
 
     return config;
   },

@@ -1,5 +1,10 @@
-import LandingPage from "@/client-components/landing-page/LandingPage";
-// import ServerLandingPage from "@/server-components/landing-page/ServerLandingPage";
+import dynamic from "next/dynamic";
+
+// Dynamically import LandingPage
+const LandingPage = dynamic(
+  () => import("@/client-components/landing-page/LandingPage"),
+  { ssr: false } // Optional: Disable SSR for this component
+);
 
 const Home: React.FC = () => {
   return (
