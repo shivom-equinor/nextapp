@@ -7,7 +7,7 @@ export async function getMyTechnologies() {
     const data = require("./test-data/GetMyTechnologies.json");
     setTimeout(() => {
       resolve(data);
-    }, 500);
+    }, 100);
   });
 }
 
@@ -16,7 +16,7 @@ export async function getUserDetails() {
     const data = require("./test-data/GetUserDetails.json");
     setTimeout(() => {
       resolve(data);
-    }, 500);
+    }, 100);
   });
 }
 
@@ -25,7 +25,7 @@ export async function getTechnologyList() {
     const data = require("./test-data/GetTechnologyViewInfo.json");
     setTimeout(() => {
       resolve(data);
-    }, 500);
+    }, 100);
   });
 }
 
@@ -34,7 +34,7 @@ export async function getGroupsAndViews() {
     const data = require("./test-data/GetGroupAndViewInfo.json");
     setTimeout(() => {
       resolve(data);
-    }, 500);
+    }, 100);
   });
 }
 
@@ -43,7 +43,7 @@ export async function getSolutionFiltersAndBrowseByRoles() {
     const data = require("./test-data/GetSolutionListMetadata.json");
     setTimeout(() => {
       resolve(data);
-    }, 500);
+    }, 100);
   });
 }
 
@@ -52,7 +52,7 @@ export async function getFavouriteSearchList() {
     const data = require("./test-data/GetFavSearchList.json");
     setTimeout(() => {
       resolve(data);
-    }, 500);
+    }, 100);
   });
 }
 

@@ -42,7 +42,7 @@ const CenteredLi = styled.li`
 
 const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({}) => {
   const [showMainNav, setShowMainNav] = useState(true);
-  const history = useRouter();
+  const router = useRouter();
 
   const HideMainNavOnURL: string[] = [
     "audit-report",
@@ -73,6 +73,15 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({}) => {
   //   staleTime: 30 * 60 * 1000, // Optional: cache data for 30 minutes
   // });
 
+  useEffect(() => {
+    const routes = ["/", "/technology-list-page"];
+
+    // Prefetch all routes
+    routes.forEach((route) => {
+      router.prefetch(route);
+    });
+  }, [router]); // This will run only once unless `router` changes.
+
   return (
     <StyledHeader>
       <nav className="container">
@@ -89,7 +98,7 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({}) => {
                 <AccountDropdown user={null} />
               </li>
               <li>
-                <MegaMenu history={history} />
+                <MegaMenu history={router} />
               </li>
             </MainNav>
           )}

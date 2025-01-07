@@ -155,7 +155,7 @@ const AccountDropdown: React.FunctionComponent<AccountDropdownProps> = ({
       {isopen && (
         <DropdownMenu onClick={closeMenu} role="menu">
           <li role="menuitem">
-            <PeopleProfileLink myProfileUrl={""} name={"My profile"} />
+            <PeopleProfileLink myProfileUrl={""} name={""} />
           </li>
           {/* For bulk update */}
           <li role="menuitem">
