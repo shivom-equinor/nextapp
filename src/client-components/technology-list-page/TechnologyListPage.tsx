@@ -9,19 +9,18 @@ import BrowseByContainer from "./BrowseByContainer";
 import { numericValue, whitespace } from "../../styles/constants";
 import { remCalc } from "../../styles/functions";
 import { TABLE_VIEW } from "./constants";
-import { ITechnologyDetails } from "../../api/models";
+import { IFilterSectionUpdated } from "@/modals/TechnologyListModals";
 import {
   getGroupsAndViews,
   getSolutionFiltersAndBrowseByRoles,
   getTechnologyList,
-  getTechnologyListDetails,
 } from "@/api/technologyAPIs";
-import { IFilterSectionUpdated } from "@/modals/TechnologyListModals";
+import { ITechnologyDetails } from "@/api/models";
 
 interface TechnologyListProps {
-  technologyList: any;
-  filters: any;
-  groupsAndViews: any;
+  // technologyList: any;
+  // filters: any;
+  // groupsAndViews: any;
 }
 
 export interface ToggleProps {
@@ -74,11 +73,13 @@ const SelectedFavSearch = styled.div`
   font-weight: ${numericValue.value500};
 `;
 
-const TechnologyListPage: React.FC<TechnologyListProps> = ({
-  technologyList,
-  filters,
-  groupsAndViews,
-}) => {
+const TechnologyListPage: React.FC<TechnologyListProps> = (
+  {
+    // technologyList,
+    // filters,
+    // groupsAndViews,
+  }
+) => {
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [solnOrgSearchTerm, setSolnOrgSearchTerm] = useState("");
@@ -86,41 +87,35 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
   const [hasUnsavedChange, setHasUnsavedChange] = useState(false);
   const groupName = "Default";
   const viewName = "All solutions";
-  const [techList, setTechList] = useState(
-    technologyList ? technologyList : null
-  );
-  const [initialTechList, setInitialTechList] = useState(
-    technologyList ? technologyList : null
-  );
-  const [isFetchingSolutionList, setIsFetchingSolutionList] = useState(false);
-  const [isFetchingFilters, setIsFetchingFilters] = useState(false);
-  const [columns, setColumns] = useState(filters?.solutionListColumns);
-  const [allFilters, setFilters] = useState(filters?.solutionListFilters);
-  const [browseByRoles, setBrowseByRoles] = useState(filters?.browseByRoles);
-  const [groupAndViewName, setGroupAndViewName] = useState(
-    groupsAndViews ? groupsAndViews : []
-  );
+  const [techList, setTechList] = useState<any>(null);
+  const [initialTechList, setInitialTechList] = useState<any>(null);
+  const [isFetchingSolutionList, setIsFetchingSolutionList] = useState(true);
+  const [isFetchingFilters, setIsFetchingFilters] = useState(true);
+  const [columns, setColumns] = useState(null);
+  const [allFilters, setFilters] = useState(null);
+  const [browseByRoles, setBrowseByRoles] = useState(null);
+  const [groupAndViewName, setGroupAndViewName] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState({});
-  // const mySolutionsStaticFilters = [
-  //   {
-  //     displayName: "My solutions",
-  //     name: "myTechnology",
-  //     type: "CheckBox",
-  //     values: ["My solutions"],
-  //   },
-  //   {
-  //     displayName: "Solutions I follow",
-  //     name: "myFavoriteTechnology",
-  //     type: "CheckBox",
-  //     values: ["Solutions I follow"],
-  //   },
-  //   {
-  //     displayName: "Waitlisted Solutions",
-  //     name: "isWaitlist",
-  //     type: "CheckBox",
-  //     values: ["Waitlisted Solutions"],
-  //   },
-  // ];
+  const mySolutionsStaticFilters = [
+    {
+      displayName: "My solutions",
+      name: "myTechnology",
+      type: "CheckBox",
+      values: ["My solutions"],
+    },
+    {
+      displayName: "Solutions I follow",
+      name: "myFavoriteTechnology",
+      type: "CheckBox",
+      values: ["Solutions I follow"],
+    },
+    {
+      displayName: "Waitlisted Solutions",
+      name: "isWaitlist",
+      type: "CheckBox",
+      values: ["Waitlisted Solutions"],
+    },
+  ];
 
   const handleSearch = (value: string): void => setSearchTerm(value);
   const handleSolnOrgSearch = (value: string): void =>
@@ -129,59 +124,43 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
   const handleUnsavedChange = (hasUnsavedChange: boolean) =>
     setHasUnsavedChange(hasUnsavedChange);
 
-  // useEffect(() => {
-  //   setIsFetchingSolutionList(true);
-  //   setIsFetchingFilters(true);
-  //   getTechnologyList()
-  //     .then((data: any) => {
-  //       setTechList(data);
-  //       setIsFetchingSolutionList(false); // TODO : use for skeleton loading
-  //     })
-  //     .catch(() => {
-  //       setIsFetchingSolutionList(false);
-  //     });
+  useEffect(() => {
+    getTechnologyList()
+      .then((data: any) => {
+        setTechList(data);
+        setInitialTechList(data);
+        setIsFetchingSolutionList(false); // TODO : use for skeleton loading
+      })
+      .catch(() => {
+        setIsFetchingSolutionList(false);
+      });
 
-  //   getSolutionFiltersAndBrowseByRoles()
-  //     .then((data: any) => {
-  //       setBrowseByRoles(data.browseByRoles);
-  //       setFilters([
-  //         ...data.solutionListFilters,
-  //         ...mySolutionsStaticFilters,
-  //       ] as any);
-  //       setColumns(data.solutionListColumns);
-  //       setIsFetchingFilters(false); // TODO : use for skeleton loading
-  //     })
-  //     .catch(() => {
-  //       setIsFetchingFilters(false);
-  //     });
+    getSolutionFiltersAndBrowseByRoles()
+      .then((data: any) => {
+        setBrowseByRoles(data.browseByRoles);
+        setFilters([
+          ...data.solutionListFilters,
+          ...mySolutionsStaticFilters,
+        ] as any);
+        setColumns(data.solutionListColumns);
+        setIsFetchingFilters(false); // TODO : use for skeleton loading
+      })
+      .catch(() => {
+        setIsFetchingFilters(false);
+      });
 
-  //   getGroupsAndViews()
-  //     .then((data: any) => {
-  //       setGroupAndViewName(data);
-  //       setIsFetchingFilters(false); // TODO : use for skeleton loading
-  //     })
-  //     .catch(() => {
-  //       setIsFetchingFilters(false);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   setTechList(technologyList);
-  //   setFilters(filters.solutionListFilters);
-  //   setBrowseByRoles(filters.browseByRoles);
-  //   setColumns(filters.solutionListColumns);
-  //   setGroupAndViewName(groupsAndViews);
-  // }, []);
-
-  // useEffect(() => {
-  //   getTechnologyListDetails("Default", "All solutions");
-  // }, []);
+    getGroupsAndViews()
+      .then((data: any) => {
+        setGroupAndViewName(data);
+      })
+      .catch(() => {});
+  }, []);
 
   const handleDefaultView = (pageView: string) => setDefaultView(pageView);
 
   // Function to dynamically filter values based on the filters object
   function filterValues(filters: any, values: any) {
-    return values.filter((value: any) => {
+    return values?.filter((value: any) => {
       // Handle "My solutions" filter with AND logic
       if (filters["myTechnology"]?.includes("My solutions")) {
         // Exclude records where myTechnology is not "1"
@@ -273,7 +252,66 @@ const TechnologyListPage: React.FC<TechnologyListProps> = ({
     } else {
       setTechList({ ...initialTechList, technologyDetails: filteredValues });
     }
-  }, [selectedFilters]);
+  }, [selectedFilters, initialTechList]);
+
+  useEffect(() => {
+    function countSolutionsForFilters(filters: any, solutions: any) {
+      console.log("filters", filters);
+      console.log("solutions", solutions);
+      let result: any = [];
+
+      // Iterate through each filter object in the filters array
+      filters?.forEach((filter: any) => {
+        let filterResult: any = {
+          name: filter.name,
+          displayName: filter.displayName,
+          type: filter.type,
+          values: [],
+        };
+
+        // For each value in the filter's values array
+        filter.values?.forEach((filterValue: any) => {
+          let count = 0;
+
+          // Special handling for the "myTechnology" filter
+          if (filter.name === "myTechnology") {
+            // Count all solutions where myTechnology value is "1"
+            count = solutions.filter(
+              (solution: any) => solution.myTechnology === "1"
+            ).length;
+          } else if (filter.name === "myFavoriteTechnology") {
+            count = solutions.filter(
+              (solution: any) => solution.myFavoriteTechnology === "1"
+            ).length;
+          } else if (filter.name === "isWaitlist") {
+            count = solutions.filter(
+              (solution: any) => solution.isWaitlist === "1"
+            ).length;
+          } else {
+            // For other filters, count how many solutions match the current filter value
+            count = solutions.filter((solution: any) => {
+              return solution[filter.name]?.includes(filterValue);
+            }).length;
+          }
+
+          // Push the value and its count into the filter's result
+          filterResult.values.push({ value: filterValue, count: count });
+        });
+
+        // Add this filter's result to the main result array
+        result.push(filterResult);
+      });
+      console.log("result", result);
+      return result;
+    }
+
+    const filtersWithCount = countSolutionsForFilters(
+      allFilters,
+      initialTechList?.technologyDetails
+    );
+
+    setFilters(filtersWithCount);
+  }, [isFetchingFilters, isFetchingSolutionList]);
 
   return (
     <>

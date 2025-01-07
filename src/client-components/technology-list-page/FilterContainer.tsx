@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import SectionBlock from "../_shared/SectionBlock";
 import FilterSection from "./FilterSection";
-import { IFilterSectionUpdated, ITechnologyDetails } from "../../api/models";
+import { IFilterSectionUpdated, ITechnologyDetails } from "@/api/models";
 import { SecondaryButton } from "../_shared/buttons";
 import Arrow from "../../styles/assets/icons/arrow-long-left.svg";
 import { ws } from "../../styles/constants";

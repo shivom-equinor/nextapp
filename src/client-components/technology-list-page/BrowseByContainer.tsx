@@ -9,7 +9,6 @@ import DropdownSelectHierarchy, {
   ISelectedOption,
 } from "../_shared/form-elements/DropdownSelectHierarchy";
 import DropdownSelect from "../_shared/form-elements/DropdownSelect";
-import { IGroupAndView } from "../../api/models";
 import { BrowseByAndSearchBySkeleton } from "../_shared/skeleton-screens/BrowseByAndSearchBySkeleton";
 import { remCalc } from "../../styles/functions";
 import {
@@ -31,13 +30,14 @@ import {
 } from "./constants";
 import Close from "../../styles/assets/icons/x.svg";
 import { Button } from "../_shared/buttons/Button";
+import { IGroupAndView } from "@/api/models";
 
 interface BrowseByProps {
-  groupsAndViews: IGroupAndView[];
+  groupsAndViews: IGroupAndView[] | null;
   selectedGroup: string;
   selectedView: string;
   selectedMyRole: string;
-  browseByRoles: ISelectOption[];
+  browseByRoles: ISelectOption[] | null;
   searchValue: string;
   isFilterOpen: boolean;
 }
@@ -204,7 +204,7 @@ const BrowseByContainer: React.FC<BrowseByProps> = ({
     <MainSection>
       <BrowseBySection isFilterOpen={isFilterOpen}>
         {/* Browse by category */}
-        {groupsAndViews.length > 0 ? (
+        {groupsAndViews && groupsAndViews.length > 0 ? (
           <div>
             <DropdownSelectHierarchy
               uniqueId={uniqueId()}
@@ -225,7 +225,7 @@ const BrowseByContainer: React.FC<BrowseByProps> = ({
         )}
 
         {/* Browse by my role */}
-        {browseByRoles?.length > 0 ? (
+        {browseByRoles && browseByRoles.length > 0 ? (
           <BrowseByRole>
             <DropdownSelect
               label="Browse by my role"
@@ -243,7 +243,10 @@ const BrowseByContainer: React.FC<BrowseByProps> = ({
       </BrowseBySection>
 
       {/* Search for solutions */}
-      {groupsAndViews.length > 0 && browseByRoles.length > 0 ? (
+      {groupsAndViews &&
+      groupsAndViews.length > 0 &&
+      browseByRoles &&
+      browseByRoles.length > 0 ? (
         <SearchBySection isFilterOpen={isFilterOpen}>
           <TextInput>
             <label>Search for solutions</label>

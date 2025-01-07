@@ -2,7 +2,7 @@ import React from "react";
 import isEmpty from "lodash/isEmpty";
 
 import { TertiaryButton } from "../_shared/buttons";
-import { ISelectedFilters } from "../../api/models";
+import { ISelectedFilters } from "@/api/models";
 
 interface ClearFiltersProps {
   solnOrgSearchTerm?: string;

@@ -9,8 +9,8 @@ import Logo from "./Logo";
 import { ws, z } from "../../styles/constants";
 import MegaMenu from "./megamenu/MegaMenuSection";
 import ExpandSearch from "./ExpandSearch";
-import { getUserDetails } from "../../api/technologyAPIs";
 import { IUserDetails } from "@/api/models";
+import { getUserDetails } from "@/api/technologyAPIs";
 
 interface HeaderProps {
   userDetails: unknown;
@@ -58,18 +58,18 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
     "risk-matrix-list-view",
   ];
 
-  const prefetchRoutes = [
-    "/",
-    "/technology-list-page",
-    // Add more routes here...
-  ];
+  // const prefetchRoutes = [
+  //   "/",
+  //   "/technology-list-page",
+  //   // Add more routes here...
+  // ];
 
-  useEffect(() => {
-    // Prefetch routes when the component is mounted on the client
-    prefetchRoutes.forEach((route) => {
-      history.prefetch(route);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Prefetch routes when the component is mounted on the client
+  //   prefetchRoutes.forEach((route) => {
+  //     history.prefetch(route);
+  //   });
+  // }, []);
 
   useEffect(() => {
     setShowMainNav(
@@ -79,12 +79,11 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
     );
   }, []);
 
-  // useEffect(() => {
-  //   getUserDetails().then((data: any) => {
-  //     console.log(data);
-  //     setUserDetails(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getUserDetails().then((data: any) => {
+      setUserDetails(data);
+    });
+  }, []);
 
   // if (!childUserDetails) return "Loading...";
 
@@ -98,10 +97,10 @@ const ConnectedHeader: React.FunctionComponent<HeaderProps> = ({
           {showMainNav && (
             <MainNav>
               <CenteredLi>
-                <ExpandSearch />{" "}
+                <ExpandSearch />
               </CenteredLi>
               <li>
-                <AccountDropdown user={userDetails as IUserDetails} />
+                <AccountDropdown user={childUserDetails} />
               </li>
               <li>
                 <MegaMenu history={history} />

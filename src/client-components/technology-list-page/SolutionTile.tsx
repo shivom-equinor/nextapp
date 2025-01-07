@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 
-import { ITechnologyDetails } from "../../api/models";
+import { ITechnologyDetails } from "@/api/models";
 import {
   technologyStatus,
   currentTRLNotApplicable,

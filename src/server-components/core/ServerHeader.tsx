@@ -1,5 +1,5 @@
 import Header from "@/client-components/header/Header";
-import { getUserDetails } from "../../api/technologyAPIs";
+import { getUserDetails } from "@/api/technologyAPIs";
 
 const getData = async () => {
   const response = await getUserDetails();

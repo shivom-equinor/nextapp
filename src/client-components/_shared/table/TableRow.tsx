@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled, { css } from "styled-components";
 
-import { ITechnologyDetails, IColumn } from "../../../api/models";
+import { ITechnologyDetails, IColumn } from "@/api/models";
 import Tag from "../Tag";
 import Link from "../links/Link";
 import ClickableArea from "../../../helpers/ClickableArea";

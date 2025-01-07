@@ -35,8 +35,8 @@ interface TechnologyListPageProps {
   isLoading: boolean;
   isFetchingSolutionList: boolean;
   techList: ITechnologyDetails[];
-  columns: IColumn[];
-  filters: ISelectedFilters;
+  columns: IColumn[] | null;
+  filters: ISelectedFilters | null;
   selectedMyRole?: string;
   selectedGroup: string;
   defaultView: string;

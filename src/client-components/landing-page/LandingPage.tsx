@@ -7,19 +7,17 @@ import { useRouter } from "next/navigation";
 import SearchField from "./SearchField";
 import RegisterTechnology from "./RegisterTechnology";
 import MyTechnologies from "./MyTechnologies";
-import { getMyTechnologies } from "../../api/technologyAPIs";
+import { getMyTechnologies } from "@/api/technologyAPIs";
 
 const LandingPage: React.FC<any> = ({ data }: any) => {
   const router = useRouter();
+  const [myTechnologies, setMyTechnologies] = useState<any>([]);
 
-  // const [myTechnologies, setMyTechnologies] = useState([]);
-
-  // useEffect(() => {
-  //   getMyTechnologies().then((data: any) => {
-  //     console.log(data);
-  //     setMyTechnologies(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getMyTechnologies().then((data: any) => {
+      setMyTechnologies(data);
+    });
+  }, []);
 
   return (
     <Row>
@@ -32,7 +30,7 @@ const LandingPage: React.FC<any> = ({ data }: any) => {
       <Col lg={8}>
         <MyTechnologies
           router={router}
-          myTechnologies={data?.myTechnologyDetails}
+          myTechnologies={myTechnologies?.myTechnologyDetails}
         />
       </Col>
     </Row>

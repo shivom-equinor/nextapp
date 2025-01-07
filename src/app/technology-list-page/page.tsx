@@ -1,9 +1,11 @@
-import TechnologyListPageServer from "@/server-components/technology-list-page/TechnologyListPageServer";
+// import TechnologyListPageServer from "@/server-components/technology-list-page/TechnologyListPageServer";
+import TechnologyListPage from "@/client-components/technology-list-page/TechnologyListPage";
 
-const TechnologyListPage = async () => {
+const TechnologyListingPage = async () => {
   return (
     <>
-      <TechnologyListPageServer />
+      {/* <TechnologyListPageServer /> */}
+      <TechnologyListPage />
     </>
   );
 };

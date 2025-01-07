@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ITechnologyDetails } from "../../api/models";
+import { ITechnologyDetails } from "@/api/models";
 import SolutionTile from "./SolutionTile";
 import { AMOUNT_PER_LOAD } from "./constants";
 import { TertiaryButton } from "../_shared/buttons";

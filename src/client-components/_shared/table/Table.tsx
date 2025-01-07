@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ITechnologyDetails, IColumn } from "../../../api/models";
+import { ITechnologyDetails, IColumn } from "@/api/models";
 import TechnologyRow from "./TableRow";
 import {
   ws,

@@ -1,4 +1,4 @@
-import { IFilterOptions } from "../../api/models";
+import { IFilterOptions } from "@/api/models";
 import { IField } from "../_shared/form-elements/_framework/formModels";
 
 export interface IFavSearchField extends IField {

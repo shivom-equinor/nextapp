@@ -18,7 +18,7 @@ import Link from "../_shared/links/Link";
 import { IUserDetails } from "@/api/models";
 
 interface AccountDropdownProps {
-  user: IUserDetails;
+  user: IUserDetails | null;
 }
 
 const DropdownComponent = styled.div`

@@ -111,9 +111,9 @@ const TechnologyListPageServer = async () => {
 
   return (
     <TechnologyListPage
-      technologyList={technologiesList}
-      filters={updatedFilters}
-      groupsAndViews={groupsAndViews}
+    // technologyList={technologiesList}
+    // filters={updatedFilters}
+    // groupsAndViews={groupsAndViews}
     />
   );
 };
