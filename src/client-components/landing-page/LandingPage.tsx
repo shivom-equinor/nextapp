@@ -15,7 +15,7 @@ import {
 import SectionBlock from "../_shared/SectionBlock";
 import { useFetchingQuery } from "@/app/react-query/reactQueryUtils";
 
-const LandingPage: React.FC<any> = () => {
+const LandingPage: React.FC<any> = ({ dehydratedState }) => {
   const router = useRouter();
   const {
     data: myTechnologiesData,
@@ -25,6 +25,7 @@ const LandingPage: React.FC<any> = () => {
     queryKey: ["myTechnologies"],
     queryFn: getMyTechnologies,
     staleTime: 30 * 60 * 1000,
+    initialData: dehydratedState,
   });
 
   return (

@@ -10,19 +10,22 @@ type QueryParams<TQueryFnData, TError> = {
   staleTime?: number;
   cacheTime?: number;
   retry?: number;
+  initialData?: TQueryFnData; // Add initialData parameter
 };
 
 /**
- * Reusable hook for React Query
+ * Reusable hook for React Query with initialData support
  */
 export function useFetchingQuery<TQueryFnData = unknown, TError = unknown>({
   queryKey,
   queryFn,
   staleTime, // Default staleTime: 30 minutes
+  initialData, // Accept initialData as a parameter
 }: QueryParams<TQueryFnData, TError>): UseQueryResult<TQueryFnData, TError> {
   return useQuery<TQueryFnData, TError>({
     queryKey,
     queryFn,
     staleTime,
+    initialData,
   });
 }

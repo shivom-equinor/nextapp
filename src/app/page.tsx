@@ -1,20 +1,18 @@
-import dynamic from "next/dynamic";
+import { QueryClient } from "@tanstack/react-query";
+import LandingPage from "@/client-components/landing-page/LandingPage";
+import { getMyTechnologies } from "@/api/technologyAPIs";
 
-export const metadata = {
-  revalidate: 0,
-};
+export default async function Page() {
+  const queryClient = new QueryClient();
 
-// Dynamically import LandingPage
-const LandingPage = dynamic(
-  () => import("@/client-components/landing-page/LandingPage")
-);
+  // Method to prefetch data in React Query v5
+  await queryClient.prefetchQuery({
+    queryKey: ["myTechnologies"],
+    queryFn: getMyTechnologies,
+    staleTime: 30 * 60 * 1000,
+  });
 
-const Home: React.FC = () => {
-  return (
-    <>
-      <LandingPage />
-    </>
-  );
-};
+  const dehydratedState = queryClient.getQueryData(["myTechnologies"]);
 
-export default Home;
+  return <LandingPage dehydratedState={dehydratedState} />;
+}

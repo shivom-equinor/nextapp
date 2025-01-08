@@ -55,54 +55,65 @@ const TechnologyList = styled.div<ToggleProps>`
   }
 `;
 
-const TechnologyListPage: React.FC<TechnologyListProps> = () => {
+const TechnologyListPage: React.FC<any> = ({ initialData }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [solnOrgSearchTerm, setSolnOrgSearchTerm] = useState("");
   const [defaultView, setDefaultView] = useState(TABLE_VIEW);
   const [hasUnsavedChange, setHasUnsavedChange] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState({});
-  const [filtersAllDetails, setAllFiltersDetails] = useState(null);
+  const [filtersAllDetails, setAllFiltersDetails] = useState(
+    initialData.filtersWithCount
+  );
   const groupName = "Default";
   const viewName = "All solutions";
-  const mySolutionsStaticFilters = [
-    {
-      displayName: "My solutions",
-      name: "myTechnology",
-      type: "CheckBox",
-      values: ["My solutions"],
-    },
-    {
-      displayName: "Solutions I follow",
-      name: "myFavoriteTechnology",
-      type: "CheckBox",
-      values: ["Solutions I follow"],
-    },
-    {
-      displayName: "Waitlisted Solutions",
-      name: "isWaitlist",
-      type: "CheckBox",
-      values: ["Waitlisted Solutions"],
-    },
-  ];
+  // const mySolutionsStaticFilters = [
+  //   {
+  //     displayName: "My solutions",
+  //     name: "myTechnology",
+  //     type: "CheckBox",
+  //     values: ["My solutions"],
+  //   },
+  //   {
+  //     displayName: "Solutions I follow",
+  //     name: "myFavoriteTechnology",
+  //     type: "CheckBox",
+  //     values: ["Solutions I follow"],
+  //   },
+  //   {
+  //     displayName: "Waitlisted Solutions",
+  //     name: "isWaitlist",
+  //     type: "CheckBox",
+  //     values: ["Waitlisted Solutions"],
+  //   },
+  // ];
 
   const { data: techListData, isLoading: isFetchingSolutionList } =
     useFetchingQuery({
       queryKey: ["technologyList"],
       queryFn: getTechnologyList,
       staleTime: 30 * 60 * 1000,
+      initialData: initialData?.queries.find(
+        (query: any) => query.queryKey[0] === "technologyList"
+      )?.state.data,
     });
 
   const { data: filtersData, isLoading: isFetchingFilters } = useFetchingQuery({
     queryKey: ["solutionFiltersAndBrowseByRoles"],
     queryFn: getSolutionFiltersAndBrowseByRoles,
     staleTime: 30 * 60 * 1000,
+    initialData: initialData?.queries.find(
+      (query: any) => query.queryKey[0] === "solutionFiltersAndBrowseByRoles"
+    )?.state.data,
   });
 
   const { data: groupAndViewName } = useFetchingQuery({
     queryKey: ["groupsAndViews"],
     queryFn: getGroupsAndViews,
     staleTime: 30 * 60 * 1000,
+    initialData: initialData?.queries.find(
+      (query: any) => query.queryKey[0] === "groupsAndViews"
+    )?.state.data,
   });
 
   const initialTechList = techListData || null;
@@ -201,85 +212,85 @@ const TechnologyListPage: React.FC<TechnologyListProps> = () => {
     });
   }
 
-  // Inside the component
-  const filtersWithCount = useMemo(() => {
-    if (
-      isFetchingFilters ||
-      isFetchingSolutionList ||
-      !filtersData ||
-      !initialTechList?.technologyDetails
-    ) {
-      return [];
-    }
+  // // Inside the component
+  // const filtersWithCount = useMemo(() => {
+  //   if (
+  //     isFetchingFilters ||
+  //     isFetchingSolutionList ||
+  //     !filtersData ||
+  //     !initialTechList?.technologyDetails
+  //   ) {
+  //     return [];
+  //   }
 
-    const filters = [
-      ...filtersData.solutionListFilters,
-      ...mySolutionsStaticFilters,
-    ];
+  //   const filters = [
+  //     ...filtersData.solutionListFilters,
+  //     ...mySolutionsStaticFilters,
+  //   ];
 
-    function countSolutionsForFilters(filters: any, solutions: any) {
-      let result: any = [];
+  //   function countSolutionsForFilters(filters: any, solutions: any) {
+  //     let result: any = [];
 
-      // Iterate through each filter object in the filters array
-      filters?.forEach((filter: any) => {
-        let filterResult: any = {
-          name: filter.name,
-          displayName: filter.displayName,
-          type: filter.type,
-          values: [],
-        };
+  //     // Iterate through each filter object in the filters array
+  //     filters?.forEach((filter: any) => {
+  //       let filterResult: any = {
+  //         name: filter.name,
+  //         displayName: filter.displayName,
+  //         type: filter.type,
+  //         values: [],
+  //       };
 
-        // For each value in the filter's values array
-        filter.values?.forEach((filterValue: any) => {
-          let count = 0;
+  //       // For each value in the filter's values array
+  //       filter.values?.forEach((filterValue: any) => {
+  //         let count = 0;
 
-          // Special handling for the "myTechnology" filter
-          if (filter.name === "myTechnology") {
-            // Count all solutions where myTechnology value is "1"
-            count = solutions.filter(
-              (solution: any) => solution.myTechnology === "1"
-            ).length;
-          } else if (filter.name === "myFavoriteTechnology") {
-            count = solutions.filter(
-              (solution: any) => solution.myFavoriteTechnology === "1"
-            ).length;
-          } else if (filter.name === "isWaitlist") {
-            count = solutions.filter(
-              (solution: any) => solution.isWaitlist === "1"
-            ).length;
-          } else {
-            // For other filters, count how many solutions match the current filter value
-            count = solutions.filter((solution: any) => {
-              return solution[filter.name]?.includes(filterValue);
-            }).length;
-          }
+  //         // Special handling for the "myTechnology" filter
+  //         if (filter.name === "myTechnology") {
+  //           // Count all solutions where myTechnology value is "1"
+  //           count = solutions.filter(
+  //             (solution: any) => solution.myTechnology === "1"
+  //           ).length;
+  //         } else if (filter.name === "myFavoriteTechnology") {
+  //           count = solutions.filter(
+  //             (solution: any) => solution.myFavoriteTechnology === "1"
+  //           ).length;
+  //         } else if (filter.name === "isWaitlist") {
+  //           count = solutions.filter(
+  //             (solution: any) => solution.isWaitlist === "1"
+  //           ).length;
+  //         } else {
+  //           // For other filters, count how many solutions match the current filter value
+  //           count = solutions.filter((solution: any) => {
+  //             return solution[filter.name]?.includes(filterValue);
+  //           }).length;
+  //         }
 
-          // Push the value and its count into the filter's result
-          filterResult.values.push({ value: filterValue, count: count });
-        });
+  //         // Push the value and its count into the filter's result
+  //         filterResult.values.push({ value: filterValue, count: count });
+  //       });
 
-        // Add this filter's result to the main result array
-        result.push(filterResult);
-      });
+  //       // Add this filter's result to the main result array
+  //       result.push(filterResult);
+  //     });
 
-      return result;
-    }
+  //     return result;
+  //   }
 
-    return countSolutionsForFilters(
-      filters,
-      initialTechList?.technologyDetails
-    );
-  }, [
-    filtersData,
-    initialTechList?.technologyDetails,
-    isFetchingFilters,
-    isFetchingSolutionList,
-  ]);
+  //   return countSolutionsForFilters(
+  //     filters,
+  //     initialTechList?.technologyDetails
+  //   );
+  // }, [
+  //   filtersData,
+  //   initialTechList?.technologyDetails,
+  //   isFetchingFilters,
+  //   isFetchingSolutionList,
+  // ]);
 
-  // Use filtersWithCount wherever needed
-  useEffect(() => {
-    setAllFiltersDetails(filtersWithCount);
-  }, [filtersWithCount]);
+  // // Use filtersWithCount wherever needed
+  // useEffect(() => {
+  //   setAllFiltersDetails(filtersWithCount);
+  // }, [filtersWithCount]);
 
   return (
     <>
